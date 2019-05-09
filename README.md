@@ -1,5 +1,5 @@
 # Projektarbeit "Rate my pussy"
-Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten zu gestalten. Die Dokumentation dieser Arbeit befindet sich in dieser Datei, der Sourcecode in diesem GIT-Repository.
+Im Modul 152 haben wir den Auftrag erhalten eine Webseite mit Multimediainhalten zu gestalten. Die Dokumentation dieser Arbeit befindet sich in dieser Datei, der Sourcecode in diesem Git-Repository.
 
 ## Projektgruppe
 * Donato Wolfisberg  
@@ -34,7 +34,7 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 | Wohnort           | 6460 Altdorf (wohnt bei ihren Eltern)                                                                   |
 | Haustiere         | Keine, will aber Katze wenn sie mal zusammenzieht mit Freund                                            |
 | Hobbies           | Treffen mit Freunden, Spatzieren in der Natur, Lesen                                                    |
-| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
+| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich |
 
 ### Persona 3:
 | Was               | Wert                                                                                                    |
@@ -46,7 +46,7 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 | Wohnort           | 8000 Zürich                                                                                             |
 | Haustiere         | Haben eine Katze als Familie                                                                            |
 | Hobbies           | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                     |
-| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
+| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich |
 
 ## Userstories
 
