@@ -7,7 +7,7 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 * Jonas Koller  
 
 ## Kurzbeschrieb
-Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angesehen werden können. Diese können dann geliked werden. Es gibt eine Übersicht der Bilder und eine Detailansicht.  Zudem gibt es einen "Pussy of the month" Bereich auf der Webseite. Hier werden die best bewerteten Katzen von diesem Monat dargestellt.
+Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angesehen werden können. Diese können dann geliked werden. Es gibt eine Übersicht der Bilder sowie Videos und eine Detailansicht.  Zudem gibt es einen "Pussy of the month" Bereich auf der Webseite. Hier werden die best bewerteten Katzen von diesem Monat dargestellt.
 
 ## Personas (Potentielle Nutzer)
 ### Persona 1:  
