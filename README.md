@@ -11,8 +11,10 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 
 ## Personas (Potentielle Nutzer)
 Persona 1:  
-| Name          | Elena Schmid
-| Alter         | 32 Jahre
+|               |               |
+| ------------- |:-------------:|
+| Name          | Elena Schmid  |
+| Alter         | 32 Jahre      |
 
 Elena, 32 Jahre alt  
 Single (leicht frustriert)  
