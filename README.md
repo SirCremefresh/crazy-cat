@@ -16,7 +16,6 @@ Persona 1:
 | Name          | Elena Schmid  |
 | Alter         | 32 Jahre      |
 
-| key     | value    |
 |---------|----------|
 | David   | Zhang    |
 | Zhongbo | Li       |
