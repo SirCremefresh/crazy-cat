@@ -11,31 +11,26 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 
 ## Personas (Potentielle Nutzer)
 Persona 1:  
-| Was                | Wert                                  |
-|--------------------|---------------------------------------|
-| Name               | Elena Schmid                          |
-| Alter              | 32 Jahre                              |
-| Beruf              | Detailhandelsfachfrau bei der Migros  |
-| Beziehungsstatus   | Single (leicht frustriert)            |
-| Wohnort            | 6032 Emmen                            |
-| Haustiere          | 7 Katzen                              |
-| Hobbies            | Auf RTL "Frauentausch" schauen        |
 
+| Was               | Wert                                                                           |
+|-------------------|--------------------------------------------------------------------------------|
+| Name              | Elena Schmid                                                                   |
+| Alter             | 32 Jahre                                                                       |
+| Beruf             | Detailhandelsfachfrau bei der Migros                                           |
+| Beziehungsstatus  | Single (leicht frustriert)                                                     |
+| Wohnort           | 6032 Emmen                                                                     |
+| Haustiere         | 7 Katzen                                                                       |
+| Hobbies           | Auf RTL "Frauentausch" schauen                                                 |
+| Internetkentnisse | Kommt gut zurecht mit dem Internet, braucht das Internet täglich am Smartphone | 
 
-Elena, 32 Jahre alt  
-Single (leicht frustriert)  
-Wohnt in Emmen  
-
-Hat zu hause 7 Katzen  
-Arbeited bei der Migro als Kassiererin.  
-Hobby: Auf RTL frauentausch schauen.  
-
-Persona2:  
-Stefanie, 23 Jahre alt  
-Fern beziehung  
-Bisexuel (LGBT supporter)
-
-Arbeited als Tierartztpraxis-Assistentin  
-Hobby: Treffen mit Freunden und Spatzieren in der Natur  
-Wohnt bei ihren Eltern auf dem Land  
+| Was               | Wert                                                                                                    |
+|-------------------|---------------------------------------------------------------------------------------------------------|
+| Name              | Stefanie Meier                                                                                          |
+| Alter             | 23 Jahre                                                                                                |
+| Beruf             | Tierische Praxisassistentin                                                                             |
+| Beziehungsstatus  | Führt eine Fernbeziehung                                                                                |
+| Wohnort           | 6460 Altdorf (wohnt bei ihren Eltern)                                                                   |
+| Haustiere         | Keine, will aber Katze wenn sie mal zusammenzieht mit Freund                                            |
+| Hobbies           | Treffen mit Freunden, Spatzieren in der Natur, Lesen                                                    |
+| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
 
