@@ -48,5 +48,17 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 | Hobbies           | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                     |
 | Internetkenntnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich |
 
-## Userstories
+## User stories
+
+### Persona 1: Elena Schmid
+* Elena möchte sich viele unterschiedliche Katzenbilder ansehen können, damit sie sich von neuen Katzenrassen ein Bild machen kann, um zu entscheiden, ob sie eine neue Katze dieser Rasse adoptieren will, weil sie gerne Katzen hat, weil sie niedlich sind und ihr Gesellschaft leisten und sie bedingungslos lieben.
+
+
+### Persona 2: Stefanie Meier
+* Stefanie interessiert sich nur für die besten Katzenbilder, weil sie wegen ihrem Job wenig Zeit hat, und will daher schnell und einfach die Pussy of the Month ansehen können, damit ihre wertvolle Zeit nicht unnötig verschwendet wird, aber sie trotzdem Katzenbilder sieht, weil sie ihr gefallen, weil Katzen so flauschig sind.
+
+
+### Persona 3: Thomas Huber
+* Thomas möchte sich andere Katzenbilder ansehen und negativ bewerten können, damit er seine eigene Katze besser darstellt, weil er so sein Selbstbewusstsein steigern kann, um sich besser zu fühlen.
+
 
