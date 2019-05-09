@@ -9,7 +9,9 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 ## Kurzbeschrieb
 Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angesehen werden können. Diese können dann geliked werden. Es gibt eine Übersicht der Bilder sowie Videos und eine Detailansicht.  Zudem gibt es einen "Pussy of the month" Bereich auf der Webseite. Hier werden die best bewerteten Katzen von diesem Monat dargestellt.
 
-## Personas (Potentielle Nutzer)
+## Personas (Potentielle Nutzer)  
+Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut mit dem Internet sind. Diese teilen das gemeinsame Interesse an Katzen. Die potenziellen Benutzer sind auf der Suche nach leichter Unterhaltung für Zuhause und Unterwegs.
+
 ### Persona 1:  
 | Was               | Wert                                                                           |
 |-------------------|--------------------------------------------------------------------------------|
@@ -45,3 +47,6 @@ Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angese
 | Haustiere         | Haben eine Katze als Familie                                                                            |
 | Hobbies           | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                     |
 | Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
+
+## Userstories
+
