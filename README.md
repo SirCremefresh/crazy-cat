@@ -10,8 +10,7 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 ... um das gehts etwa auf der Webseite ...  
 
 ## Personas (Potentielle Nutzer)
-Persona 1:  
-
+### Persona 1:  
 | Was               | Wert                                                                           |
 |-------------------|--------------------------------------------------------------------------------|
 | Name              | Elena Schmid                                                                   |
@@ -22,7 +21,8 @@ Persona 1:
 | Haustiere         | 7 Katzen                                                                       |
 | Hobbies           | Auf RTL "Frauentausch" schauen                                                 |
 | Internetkentnisse | Kommt gut zurecht mit dem Internet, braucht das Internet täglich am Smartphone | 
-
+  
+### Persona 2:  
 | Was               | Wert                                                                                                    |
 |-------------------|---------------------------------------------------------------------------------------------------------|
 | Name              | Stefanie Meier                                                                                          |
@@ -34,3 +34,14 @@ Persona 1:
 | Hobbies           | Treffen mit Freunden, Spatzieren in der Natur, Lesen                                                    |
 | Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
 
+### Persona 3:
+| Was               | Wert                                                                                                    |
+|-------------------|---------------------------------------------------------------------------------------------------------|
+| Name              | Thomas Huber                                                                                            |
+| Alter             | 43 Jahre                                                                                                |
+| Beruf             | Informatiker bei einer IT-Bude                                                                          |
+| Beziehungsstatus  | Ist verheiratet und hat eine Stieftochter                                                               |
+| Wohnort           | 8000 Zürich                                                                                             |
+| Haustiere         | Haben eine Katze als Familie                                                                            |
+| Hobbies           | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                     |
+| Internetkentnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Samrtphone, benutzt Internet täglich |
