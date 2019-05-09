@@ -11,15 +11,15 @@ Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten 
 
 ## Personas (Potentielle Nutzer)
 Persona 1:  
-| Was     | Wert            |
-|---------|-----------------|
-| Name    | Elena Schmid    |
-| Alter   | 32 Jahre        |
-| Beruf   | Detailhandelsfachfrau bei der Migros |
-| Beziehungsstatus   | Single (leicht frustriert) |
-| Wohnort | 6032 Emmen |
-| Haustiere | 7 Katzen |
-| Hobbies | Auf RTL "Frauentausch" schauen |
+| Was                | Wert                                  |
+|--------------------|---------------------------------------|
+| Name               | Elena Schmid                          |
+| Alter              | 32 Jahre                              |
+| Beruf              | Detailhandelsfachfrau bei der Migros  |
+| Beziehungsstatus   | Single (leicht frustriert)            |
+| Wohnort            | 6032 Emmen                            |
+| Haustiere          | 7 Katzen                              |
+| Hobbies            | Auf RTL "Frauentausch" schauen        |
 
 Elena, 32 Jahre alt  
 Single (leicht frustriert)  
