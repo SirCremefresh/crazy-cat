@@ -16,11 +16,11 @@ Persona 1:
 | Name          | Elena Schmid  |
 | Alter         | 32 Jahre      |
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| key     | value    |
+|---------|----------|
+| David   | Zhang    |
+| Zhongbo | Li       |
+| Linus   | Torvalds |
 
 Elena, 32 Jahre alt  
 Single (leicht frustriert)  
