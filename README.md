@@ -1,8 +1,19 @@
-# rate-my-pussy
+# Projektarbeit "Rate my pussy"
+Im Modul 152 haben wir den Auftag erhalten eine Webseite mit Multimediainhalten zu gestalten. Die Dokumentation dieser Arbeit befindet sich in dieser Datei, der Sourcecode in diesem GIT-Repository.
 
-## Personas
+## Projektgruppe
+* Donato Wolfisberg  
+* Simon Kaspar  
+* Jonas Koller  
 
-Persona1:  
+## Kurzbeschrieb
+... um das gehts etwa auf der Webseite ...  
+
+## Personas (Potentielle Nutzer)
+Persona 1:  
+| Name          | Elena Schmid
+| Alter         | 32 Jahre
+
 Elena, 32 Jahre alt  
 Single (leicht frustriert)  
 Wohnt in Emmen  
