@@ -63,3 +63,11 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 * Thomas möchte sich andere Katzenbilder ansehen und negativ bewerten können, damit er seine eigene Katze besser darstellt, weil er so sein Selbstbewusstsein steigern kann, um sich besser zu fühlen.  
 * Thomas möchte ein "Dark Theme" haben, da er die helle Tageszeit mit seiner Familie verbringen will und die Applikation oft erst am Abend nutzen will. So sind seine Augen besser geschützt und es ist angenehmer im Dunkeln zu lesen und sich Bilder/Videos anzuschauen. Er kennt diese Funktion bereits von anderen Apps und Programmen, wie z.B. seiner IDE.  
 * Thomas möchte auch Videos von Katzen ansehen können, damit er sogenannte "Fail"-Katzenvideos anschauen kann, in welchen Katzen z.B. vor Gurken erschrecken. Wenn Katzen lustige und unberechenbare Handlungen machen, findet er das lustig. Diese sind nur in Videos darstellbar, weshalb er Videos haben möchte.
+
+## Enthaltene Elemente
+
+* Eigenes SVG Logo für die Website
+* Selbst erstellte, mit Gimp aufbereitete, Bilder von Katzen
+* Aus dem Internet bezogene Katzenbilder, mit Nutzungsrecht
+* Eigens erstelltes und mit ffmpeg konvertiertes Video von Katzen
+* Videos von anderen Katzen aus dem Internet, mit Nutzungsrecht
