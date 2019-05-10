@@ -61,7 +61,11 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 ### Persona 3: Thomas Huber
 * Thomas möchte sich andere Katzenbilder ansehen und negativ bewerten können, damit er seine eigene Katze besser darstellt, weil er so sein Selbstbewusstsein steigern kann, um sich besser zu fühlen.  
 
-Elena will eine übersicht weil neben an Fernsehen will  
+### Persona 1: Elena Schmid
+* Elena will eine Übersicht, wo an viele Bilder auf einmal sieht, damit sie sich während den nicht interessanten Stellen der Sendung Frauentausch beschäftigen kann, weil sie dann nicht immer auf dem weiter Klicken muss und sich trotzdem noch auf die Sendung Konzentrieren kann.
+
+
+___Elena will eine übersicht weil neben an Fernsehen will___  
 Thomas Pussy of the the month mehr zeit mit der familie nur die Besten bilder  
 Stefanie Like weil sie auf social media aktive ist und sich aktive an der Comunity beteiligen will  
 Stefanie Video will Videos weil sie sich die von Instagramm gewönt ist und es sich somit natürlicher anfühlt  
