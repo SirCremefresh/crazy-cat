@@ -13,40 +13,40 @@ Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angese
 Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut mit dem Internet sind. Diese teilen das gemeinsame Interesse an Katzen. Die potenziellen Benutzer sind auf der Suche nach leichter Unterhaltung für zu Hause und unterwegs.
 
 ### Persona 1:  
-| Was               | Wert                                                                            |
-|-------------------|---------------------------------------------------------------------------------|
-| Name              | Elena Schmid                                                                    |
-| Alter             | 32 Jahre                                                                        |
-| Beruf             | Detailhandelsfachfrau bei der Migros                                            |
-| Beziehungsstatus  | Single (leicht frustriert)                                                      |
-| Wohnort           | 6032 Emmen                                                                      |
-| Haustiere         | 7 Katzen                                                                        |
-| Hobbies           | Auf RTL "Frauentausch" schauen                                                  |
-| Internetkenntnisse | Kommt gut zurecht mit dem Internet, braucht das Internet täglich am Smartphone |
+| Was                | Wert                                                                            |
+|--------------------|---------------------------------------------------------------------------------|
+| Name               | Elena Schmid                                                                    |
+| Alter              | 32 Jahre                                                                        |
+| Beruf              | Detailhandelsfachfrau bei der Migros                                            |
+| Beziehungsstatus   | Single (leicht frustriert)                                                      |
+| Wohnort            | 6032 Emmen                                                                      |
+| Haustiere          | 7 Katzen                                                                        |
+| Hobbies            | Auf RTL "Frauentausch" schauen                                                  |
+| Internetkenntnisse | Kommt gut zurecht mit dem Internet, braucht das Internet täglich am Smartphone  |
 
 ### Persona 2:  
-| Was               | Wert                                                                                                     |
-|-------------------|----------------------------------------------------------------------------------------------------------|
-| Name              | Stefanie Meier                                                                                           |
-| Alter             | 23 Jahre                                                                                                 |
-| Beruf             | Tiermedizinische Praxisassistentin                                                                       |
-| Beziehungsstatus  | Führt eine Fernbeziehung                                                                                 |
-| Wohnort           | 6460 Altdorf (wohnt bei ihren Eltern)                                                                    |
-| Haustiere         | Keine, will aber Katze wenn sie mal zusammenzieht mit Freund                                             |
-| Hobbies           | Treffen mit Freunden, Spatzieren in der Natur, Lesen                                                     |
-| Internetkenntnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich |
+| Was                | Wert                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------|
+| Name               | Stefanie Meier                                                                                           |
+| Alter              | 23 Jahre                                                                                                 |
+| Beruf              | Tiermedizinische Praxisassistentin                                                                       |
+| Beziehungsstatus   | Führt eine Fernbeziehung                                                                                 |
+| Wohnort            | 6460 Altdorf (wohnt bei ihren Eltern)                                                                    |
+| Haustiere          | Keine, will aber Katze wenn sie mal zusammenzieht mit Freund                                             |
+| Hobbies            | Treffen mit Freunden, Spatzieren in der Natur, Lesen                                                     |
+| Internetkenntnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich  |
 
 ### Persona 3:
-| Was               | Wert                                                                                                     |
-|-------------------|----------------------------------------------------------------------------------------------------------|
-| Name              | Thomas Huber                                                                                             |
-| Alter             | 43 Jahre                                                                                                 |
-| Beruf             | Informatiker bei einer IT-Firma                                                                          |
-| Beziehungsstatus  | Ist verheiratet und hat eine Stieftochter                                                                |
-| Wohnort           | 8000 Zürich                                                                                              |
-| Haustiere         | Haben eine Katze als Familie                                                                             |
-| Hobbies           | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                      |
-| Internetkenntnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich |
+| Was                | Wert                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------|
+| Name               | Thomas Huber                                                                                             |
+| Alter              | 43 Jahre                                                                                                 |
+| Beruf              | Informatiker bei einer IT-Firma                                                                          |
+| Beziehungsstatus   | Ist verheiratet und hat eine Stieftochter                                                                |
+| Wohnort            | 8000 Zürich                                                                                              |
+| Haustiere          | Haben eine Katze als Familie                                                                             |
+| Hobbies            | Zeit mit Familie verbringen, Fotografieren, Aktivist bei Greenpeace                                      |
+| Internetkenntnisse | Kommt sehr gut mit dem Internet zurecht, sowohl am PC, wie auch am Smartphone, benutzt Internet täglich  |
 
 ## User stories
 
