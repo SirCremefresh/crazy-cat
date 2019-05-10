@@ -52,21 +52,14 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 
 ### Persona 1: Elena Schmid
 * Elena möchte sich viele unterschiedliche Katzenbilder ansehen können, damit sie sich von neuen Katzenrassen ein Bild machen kann, um zu entscheiden, ob sie eine neue Katze dieser Rasse adoptieren will, weil sie gerne Katzen hat, weil sie niedlich sind und ihr Gesellschaft leisten und sie bedingungslos lieben.
-
+* Elena will eine Übersicht, auf der man viele Bilder auf einmal sieht, damit sie sich während während dem Fernseh schauen nebenbei noch beschäftigen kann, weil sie dann weniger auf dem Smartphone klicken muss und sich trotzdem noch auf die Sendung Konzentrieren kann. Für sie wäre eine simple und intuitive Benutzeroberfläche super, da diese auch nebenbei gut verwendet werden kann.  
+* Elena möchte das sich Webseiten und Firmen mit dem Thema "LGBT" auseinander setzen, wie sie das tut. Deshalb findet sie es super, wenn es einen "Pride"-Modus gibt, mit welchem sowohl Elena, wie auch die Webseite sich zu "LGBT" bekennen können. Elena fühlt sich verbundener zu Webseiten, welche die gleichen Interessen teilen wie sie und sich für eine offenere Welt einsetzen und ein Zeichen setzen wollen.
 
 ### Persona 2: Stefanie Meier
 * Stefanie interessiert sich nur für die besten Katzenbilder, weil sie wegen ihrem Job wenig Zeit hat, und will daher schnell und einfach die Pussy of the Month ansehen können, damit ihre wertvolle Zeit nicht unnötig verschwendet wird, aber sie trotzdem Katzenbilder sieht, weil sie ihr gefallen, weil Katzen so flauschig sind.
-
+* Stefanie möchte Katzenbilder "liken", damit sie sich aktiv einbringen können und ihre Meinung zu Bildern auf einfache Art äussern können. Da sie viel auf Social Media unterwegs ist, kennt sie ähnliche Funktionen bewreits von Instagram und Facebook. Diese Möglichkeit möchte sie auch hier haben.
 
 ### Persona 3: Thomas Huber
 * Thomas möchte sich andere Katzenbilder ansehen und negativ bewerten können, damit er seine eigene Katze besser darstellt, weil er so sein Selbstbewusstsein steigern kann, um sich besser zu fühlen.  
-
-### Persona 1: Elena Schmid
-* Elena will eine Übersicht, wo an viele Bilder auf einmal sieht, damit sie sich während den nicht interessanten Stellen der Sendung Frauentausch beschäftigen kann, weil sie dann nicht immer auf dem weiter Klicken muss und sich trotzdem noch auf die Sendung Konzentrieren kann.
-
-
-___Elena will eine übersicht weil neben an Fernsehen will___  
-Thomas Pussy of the the month mehr zeit mit der familie nur die Besten bilder  
-Stefanie Like weil sie auf social media aktive ist und sich aktive an der Comunity beteiligen will  
-Stefanie Video will Videos weil sie sich die von Instagramm gewönt ist und es sich somit natürlicher anfühlt  
-Elena Pridemode dass wenn andere leute auf ihren pc schauen sofort wissen dass sie pride aktivistin ist
+* Thomas möchte ein "Dark Theme" haben, da er die helle Tageszeit mit seiner Familie verbringen will und die Applikation oft erst am Abend nutzen will. So sind seine Augen besser geschützt und es ist angenehmer im dunkeln zu lesen und sich Bilder/Videos anzuschauen. Er kennt diese Funktion bereits von anderen Apps und Programmen, wie z.B. seiner IDE.  
+* Thomas möchte auch Videos von Katzen ansehen können, damit er sogenannte "Fail"-Katzenvideos anschauen kann, in welchen Katzen z.B. vor Gurken verschrecken. Wenn Katzen lustige und unberechenbare Handlungen machen, findet er das lustig. Diese sind nur in Videos darstellbar, weshalb er Videos haben möchte.
