@@ -11,3 +11,10 @@ Da die Desktopversion der Tabletversion sehr ähnlich ist wurden dazu keine Wire
 
 ## Wireframes
 Hier folgen nun unsere Wireframes mit einer kurzen Erklärung.
+### Übersicht (Startseite)
+<img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/%C3%9Cbersicht%20-%20Desktop.png">
+<img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/%C3%9Cbersicht%20-%20Mobile.png">  
+Auf der Übersichtsseite werden die Bilder in einer Art "Galerie" dargestellt. Zugehörig zu jedem Bild ist dessen Titel zu sehen und die Anzahl "Likes" welche dieses Bild erhalten hat. Die Tabletversion unterscheidet sich hier zur Desktopversion bei der Anzahl Bildern pro Zeile. Auf dem Desktop sind 4 Bilder in einer Zeile, bei der Tabletversion nur 3. Auf der Mobileversion sind 2 Bilder pro Zeile zu sehen.   
+   
+   
+Diese Seite ist die Startseite, auf welcher alle Nutzer beim Aufruf der Seite landen sollen. Die Mobileversion der Seite hat eine "Burger"-Navigation. Die Tablet- und Desktopversion haben eine "Header"-Navigation. Diese ist bei Tablet- und Desktopversion gleich aufgebaut. Am linken Rand der Navigation soll das Logo dargestellt werden. Bei einem klick auf dieses (egal auf welcher Seite) soll zurück zu dieser Übersichtsseite navigiert werden. Auf der Tablet- und Desktopversion ist im rechten Ecken noch ein Icon zu sehen, welches zu den Einstellungen führen soll. Bei einem Klick auf ein Bild wird in dessen Detailansicht gewechselt.
