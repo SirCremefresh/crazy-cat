@@ -27,7 +27,10 @@ Die Benutzer sollen von dieser Seite aus entweder auf ein Bild klicken um so in 
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20-%20Desktop.png">  
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20-%20Mobile.png">
 
+Bei der Detailseite der Nutzer ein einzelnes Bild, das im in voller gösse, präsentiert wird. Mann hat auf dieser Seite die Möglichkeit das Bild zu liken aber auch zu disliken. Bei der Mobilen Ansicht wird der Titel oben angezeigt und es gibt noch einen Zurück Button. Das auch der Mobile User ohne aufklappen vom Burger Menu zur Übersicht kommt. Die Lizenz, unter dem das Bild steht ist gleich unter dem Bild ersichtlich.
+
 #### Userflow
+Der mobile Benutzer hat die Möglichkeit über den zurück Knopf oberhalb vom Bild zur Übersicht zu kommen. Über die Top Navigation könne die User in die Einstellungen oder anderen Abteile wechseln.
 
 ### Detail Video
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20Video%20-%20Desktop.png">  
