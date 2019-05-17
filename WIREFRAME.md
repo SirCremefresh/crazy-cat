@@ -11,6 +11,7 @@ Da die Desktopversion der Tabletversion sehr ähnlich ist wurden dazu keine Wire
 
 ## Wireframes
 Hier folgen nun unsere Wireframes mit einer kurzen Erklärung.
+
 ### Übersicht (Startseite)
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/%C3%9Cbersicht%20-%20Desktop.png">
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/%C3%9Cbersicht%20-%20Mobile.png">  
@@ -21,3 +22,26 @@ Bei einem Klick auf ein Bild wird in dessen Detailansicht gewechselt.
 **Die Übersichtsseite bei den Videos sieht genau gleich aus wie die Übersichtsseite bei den Bildern. Bei der Videoseite wird ein Preview-Image des Videos dargestellt. Die "Pussy of the month"-Seite sieht auch genau so aus. Somit ist auf allen drei Abteilen der Webseite eine einheitliche Struktur, was dem Nutzer ein einfaches Bedienen ermöglicht**
 #### Userflow
 Die Benutzer sollen von dieser Seite aus entweder auf ein Bild klicken um so in die Detailansicht zu wechseln oder über die Navigation in die Einstellungen oder anderen Abteile wechseln.
+
+### Detail
+<img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20-%20Desktop.png">  
+<img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20-%20Mobile.png">
+
+#### Userflow
+
+### Detail Video
+<img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20Video%20-%20Desktop.png">  
+<img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20Video%20-%20Mobile.png">
+
+#### Userflow
+
+### Einstellungen
+<img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Einstellungen%20-%20Desktop.png">  
+<img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Einstellungen%20-%20Mobile.png">
+
+#### Userflow
+
+### Menu (Mobile)
+<img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Menu%20-%20Mobile.png">
+
+#### Userflow
