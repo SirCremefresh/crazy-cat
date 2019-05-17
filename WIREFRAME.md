@@ -46,7 +46,10 @@ Der mobile Benutzer hat die Möglichkeit über den zurück Knopf oberhalb vom Bi
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Einstellungen%20-%20Desktop.png">  
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Einstellungen%20-%20Mobile.png">
 
+Auf der Einstellungsseite hat der User die Möglichkeit die ganze Website in den Darkmode zu schalten oder auch die Website in den Pridemode zu schalten. Unterhalb dieser Schalter befinden sich Informationen über die Website sowie auch die Nutzungsbedingungen.
+
 #### Userflow
+Über die Top Navigation kann der User auf anderen Abteile wechseln.
 
 ### Menu (Mobile)
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Menu%20-%20Mobile.png">
