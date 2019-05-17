@@ -56,4 +56,3 @@ Auf der Einstellungsseite hat der User die Möglichkeit die ganze Website in den
 
 Beim mobilen User wird bei der Top Navigation nicht die einzelnen Links angezeigt, sondern nur der Titel der Website und ein Burger Menu Icon. Durch Klick dieses Icon öffnet der User ein Dropdown auf dem er die Links auf die verschiedenen Abteile der Webseite sieht und durch einen klick zu denen Navigieren kann.
 
-#### Userflow
