@@ -54,4 +54,6 @@ Auf der Einstellungsseite hat der User die Möglichkeit die ganze Website in den
 ### Menu (Mobile)
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Menu%20-%20Mobile.png">
 
+Beim mobilen User wird bei der Top Navigation nicht die einzelnen Links angezeigt, sondern nur der Titel der Website und ein Burger Menu Icon. Durch Klick dieses Icon öffnet der User ein Dropdown auf dem er die Links auf die verschiedenen Abteile der Webseite sieht und durch einen klick zu denen Navigieren kann.
+
 #### Userflow
