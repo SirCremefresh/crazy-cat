@@ -36,7 +36,11 @@ Der mobile Benutzer hat die Möglichkeit über den zurück Knopf oberhalb vom Bi
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20Video%20-%20Desktop.png">  
 <img width="25%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Detail%20Video%20-%20Mobile.png">
 
+Die Detail-Videoseite ist eigentlich gleich aufgebaut wie die oben beschriebene Detailseite. Der einzige unterschied ist, dass sich statt ein Bild in der Mitte ein Video befinden mit den Controlls gleich unterhalb.
+
 #### Userflow
+Der mobile Benutzer hat die Möglichkeit über den zurück Knopf oberhalb vom Bild zur Übersicht zu kommen. Über die Top Navigation könne die User in die Einstellungen oder anderen Abteile wechseln.
+
 
 ### Einstellungen
 <img width="65%" src="https://github.com/SirCremefresh/rate-my-pussy/blob/master/img/Einstellungen%20-%20Desktop.png">  
