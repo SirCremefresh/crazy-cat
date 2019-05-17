@@ -7,7 +7,7 @@ Da unsere Seite responsive sein soll, haben wir uns entschieden 3 verschiedene G
 * Tablet-Format
 * Desktop-Format  
 
-Da die Desktopversion der Tabletversion sehr ähnlich ist wurden dazu keine Wireframes erstellt und es wird jeweils die Abweichung zu den Desktop-Wireframes beschrieben. Diese ist aber sehr gering.
+Da die Desktopversion der Tabletversion sehr ähnlich ist wurden zur Tabletversion keine Wireframes erstellt und es wird jeweils die Abweichung zu den Desktop-Wireframes beschrieben. Diese ist aber sehr gering.
 
 ## Wireframes
 Hier folgen nun unsere Wireframes mit einer kurzen Erklärung.
