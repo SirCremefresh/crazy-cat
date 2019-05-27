@@ -1,3 +1,36 @@
-<h1>begin</h1>
-<slot></slot>
-<h1>end</h1>
+<style>
+    :host {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "header" "nav" "main" "footer";
+    }
+
+    header {
+        grid-area: header;
+        background-color: gray;
+    }
+
+    nav {
+        grid-area: nav;
+        background-color: blue;
+    }
+
+    article {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+        background-color: darkblue;
+    }
+
+</style>
+
+<header>Header</header>
+<nav>Navigation</nav>
+<article>
+    <slot></slot>
+</article>
+<footer>Footer</footer>
