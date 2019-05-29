@@ -84,6 +84,9 @@ dist/
 # Serverless directories
 .serverless/
 
+# Firebase
+.firebase/
+
 # FuseBox cache
 .fusebox/
 
