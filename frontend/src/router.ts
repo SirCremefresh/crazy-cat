@@ -52,12 +52,7 @@ function findRoute(path: string): Route {
 }
 
 async function updateRoute(): Promise<void> {
-	const path = getPath();
-	if (path === '') {
-		await navigateTo('home');
-		return;
-	}
-	const route = findRoute(path);
+	const route = findRoute(getPath());
 
 	let component;
 	if (route === undefined) {
