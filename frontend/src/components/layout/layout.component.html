@@ -3,15 +3,17 @@
 		min-height: 100vh;
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: auto auto 1fr auto;
-		grid-template-areas: "header" "nav" "main" "footer";
+		grid-template-rows: auto 1fr auto;
+		grid-template-areas: "header" "main" "footer";
 	}
 
 	header {
 		grid-area: header;
 		background-color: gray;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: auto auto;
+		grid-template-areas: "navigation-button logo settings-button" "nav nav nav";
 	}
 
 	nav {
@@ -32,18 +34,19 @@
 		background-color: darkblue;
 	}
 
-	#menu-button {
-		/*align-self: flex-end;*/
+	#navigation-button {
+		grid-area: navigation-button;
+	}
+
+	#logo {
+		grid-area: logo;
+	}
+
+	#settings-button {
+		grid-area: settings-button;
 	}
 
 	@media (min-width: 480px) {
-		nav[data-open="false"] {
-			display: block;
-		}
-
-		#menu-button {
-			display: none;
-		}
 	}
 
 	@media (min-width: 600px) {
@@ -52,20 +55,37 @@
 			grid-template-rows: auto 1fr auto;
 			grid-template-areas: "header header" "nav main" "footer footer";
 		}
+
+		header {
+			grid-template-columns: auto 1fr auto;
+			grid-template-rows: auto;
+			grid-template-areas: "logo nav settings-button";
+		}
+
+		nav[data-open="false"] {
+			display: block;
+		}
+
+		#navigation-button {
+			display: none;
+		}
 	}
 </style>
 
 <header>
-	<span>
-	Header
-	</span>
-	<button id="menu-button">
+	<button id="navigation-button">
 		☰
 	</button>
+	<span id="logo">
+		Header
+	</span>
+	<nav id="navigation" data-open="false">
+		Navigation
+	</nav>
+	<span id="settings-button">
+		⚙
+	</span>
 </header>
-<nav id="navigation" data-open="false">
-	Navigation
-</nav>
 <article>
 	<slot></slot>
 </article>
