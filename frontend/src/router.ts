@@ -25,9 +25,7 @@ export function initRouter(options: {
 }
 
 export function navigateTo(path: string) {
-	path = trimSlashes(path);
-
-	history.pushState({}, path, trimSlashes(path));
+	history.pushState({}, path, path);
 	return updateRoute();
 }
 
@@ -40,11 +38,13 @@ function getPath(): string {
 	return trimSlashes(path);
 }
 
-function findRoute(path: string): Route {
+function findRoute(): Route {
+	const path = getPath();
+	const shortPath = path.slice(0, path.lastIndexOf('/'));
 
 	return routes.find((route) => {
 		if (route.hasVariable) {
-			return route.path === path.slice(0, path.lastIndexOf('/'));
+			return route.path === shortPath;
 		} else {
 			return route.path === path;
 		}
@@ -52,7 +52,7 @@ function findRoute(path: string): Route {
 }
 
 async function updateRoute(): Promise<void> {
-	const route = findRoute(getPath());
+	const route = findRoute();
 
 	let component;
 	if (route === undefined) {
