@@ -1,65 +1,72 @@
 <style>
-    :host {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-areas: "header" "nav" "main" "footer";
-    }
+	:host {
+		min-height: 100vh;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr auto;
+		grid-template-areas: "header" "nav" "main" "footer";
+	}
 
-    header {
-        grid-area: header;
-        background-color: gray;
-    }
+	header {
+		grid-area: header;
+		background-color: gray;
+		display: flex;
+		justify-content: space-between;
+	}
 
-    nav {
-        grid-area: nav;
-        background-color: blue;
-    }
+	nav {
+		grid-area: nav;
+		background-color: blue;
+	}
 
-    nav[data-open="false"] {
-        display: none;
-    }
+	nav[data-open="false"] {
+		display: none;
+	}
 
-    article {
-        grid-area: main;
-    }
+	article {
+		grid-area: main;
+	}
 
-    footer {
-        grid-area: footer;
-        background-color: darkblue;
-    }
+	footer {
+		grid-area: footer;
+		background-color: darkblue;
+	}
 
+	#menu-button {
+		/*align-self: flex-end;*/
+	}
 
-    @media (min-width: 480px) {
-        nav[data-open="false"] {
-            display: block;
-        }
+	@media (min-width: 480px) {
+		nav[data-open="false"] {
+			display: block;
+		}
 
-        #menu-button {
-            display: none;
-        }
-    }
+		#menu-button {
+			display: none;
+		}
+	}
 
-    @media (min-width: 600px) {
-        :host {
-            grid-template-columns: auto 1fr auto;
-            grid-template-rows: auto 1fr auto;
-            grid-template-areas: "header header" "nav main" "footer footer";
-        }
-    }
+	@media (min-width: 600px) {
+		:host {
+			grid-template-columns: auto 1fr auto;
+			grid-template-rows: auto 1fr auto;
+			grid-template-areas: "header header" "nav main" "footer footer";
+		}
+	}
 </style>
 
 <header>
-    Header
-    <button id="menu-button">
-        ☰
-    </button>
+	<span>
+	Header
+	</span>
+	<button id="menu-button">
+		☰
+	</button>
 </header>
 <nav id="navigation" data-open="false">
-    Navigation
+	Navigation
 </nav>
 <article>
-    <slot></slot>
+	<slot></slot>
 </article>
 <footer>Footer</footer>

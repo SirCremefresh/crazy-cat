@@ -7,7 +7,6 @@ export class HomePage extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
     }
-
 }
 
 
