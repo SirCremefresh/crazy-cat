@@ -1,10 +1,10 @@
 import './components/layout/layout.component';
 
 interface Route {
-	component: string,
-	path: string,
-	hasVariable?: boolean,
-	page: any
+    component: string,
+    path: string,
+    hasVariable?: boolean,
+    page: any
 }
 
 const mountPoint: HTMLElement = document.getElementById('app');
@@ -14,59 +14,67 @@ let routes: Route[];
 let notFoundRoute: Route;
 
 export function initRouter(options: {
-	routes: Route[], notFoundRoute: Route
+    routes: Route[], notFoundRoute: Route
 }): Promise<void> {
-	routes = options.routes;
-	notFoundRoute = options.notFoundRoute;
-	window.onpopstate = () => updateRoute();
-	layout = document.createElement('app-layout');
-	mountPoint.appendChild(layout);
-	return updateRoute();
+    routes = options.routes;
+    notFoundRoute = options.notFoundRoute;
+    window.onpopstate = () => updateRoute();
+    layout = document.createElement('app-layout');
+    mountPoint.appendChild(layout);
+    return updateRoute();
 }
 
-export function navigateTo(path: string) {
-	history.pushState({}, path, path);
-	return updateRoute();
+export async function navigateTo(path: string) {
+    if (path === getDecodedURI()) {
+        return;
+    }
+
+    history.pushState({}, path, path);
+    return await updateRoute();
 }
 
 function trimSlashes(path: string) {
-	return path.toString().replace(/\/$/, '').replace(/^\//, '');
+    return path.toString().replace(/\/$/, '').replace(/^\//, '');
+}
+
+function getDecodedURI() {
+    return decodeURI(window.location.pathname);
 }
 
 function getPath(): string {
-	const path = decodeURI(window.location.pathname);
-	return trimSlashes(path);
+    const path = getDecodedURI();
+    return trimSlashes(path);
 }
 
 function findRoute(): Route {
-	const path = getPath();
-	const shortPath = path.slice(0, path.lastIndexOf('/'));
+    const path = getPath();
+    const shortPath = path.slice(0, path.lastIndexOf('/'));
 
-	return routes.find((route) => {
-		if (route.hasVariable) {
-			return route.path === shortPath;
-		} else {
-			return route.path === path;
-		}
-	});
+    return routes.find((route) => {
+        if (route.hasVariable) {
+            return route.path === shortPath;
+        } else {
+            return route.path === path;
+        }
+    });
 }
 
 async function updateRoute(): Promise<void> {
-	const route = findRoute();
+    const route = findRoute();
 
-	let component;
-	if (route === undefined) {
-		await notFoundRoute.page;
-		component = notFoundRoute.component;
-		history.pushState({}, 'not found', trimSlashes(notFoundRoute.path));
-	} else {
-		await route.page;
-		component = route.component;
-	}
+    let component;
+    if (route === undefined) {
+        await notFoundRoute.page;
+        component = notFoundRoute.component;
+        history.pushState({}, 'not found', trimSlashes(notFoundRoute.path));
+    } else {
+        await route.page;
+        component = route.component;
+    }
 
-	while (layout.firstChild) {
-		layout.removeChild(layout.firstChild);
-	}
+    while (layout.firstChild) {
+        layout.removeChild(layout.firstChild);
+    }
 
-	layout.appendChild(document.createElement(component));
+    layout.appendChild(document.createElement(component));
 }
