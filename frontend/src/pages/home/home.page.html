@@ -1,7 +1,21 @@
 <style>
     :host {
         padding: 20px;
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    app-image {
+        flex: 50%;
+        max-width: 50%;
+    }
+
+    @media (min-width: 600px) {
+        app-image {
+            flex: 25%;
+            max-width: 25%;
+        }
     }
 </style>
 <div id="images"></div>
