@@ -1,22 +1,19 @@
 <style>
-    :host {
-        padding: 20px;
-        display: flex;
-        flex-wrap: wrap;
+    #images {
+        padding: 15px;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr 1fr;
     }
 
     app-image {
-        flex: 50%;
-        max-width: 50%;
-        /*padding: 5px;*/
+        background: gray;
+        width: 100%;
     }
 
-
-
     @media (min-width: 600px) {
-        app-image {
-            flex: 25%;
-            max-width: 25%;
+        #images {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }
 </style>
