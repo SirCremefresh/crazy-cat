@@ -2,25 +2,23 @@ import '../../components/image/image.component';
 import template from './home.page.html';
 
 export class HomePage extends HTMLElement {
-	private currentPage = 0;
+    private imagesContainer: HTMLElement;
+    private imageComponents = [];
 
-	private imagesContainer: HTMLElement;
-	private imageComponents = [];
+    constructor() {
+        super();
 
-	constructor() {
-		super();
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = template;
 
-		this.attachShadow({mode: 'open'});
-		this.shadowRoot.innerHTML = template;
+        this.imagesContainer = this.shadowRoot.getElementById('images');
 
-		this.imagesContainer = this.shadowRoot.getElementById('images');
+        for (let i = 0; i < 20; i++) {
+            this.imageComponents.push(document.createElement('app-image'));
+        }
 
-		for (let i = 0; i < 20; i++) {
-			this.imageComponents.push(document.createElement('app-image'));
-		}
-
-		this.imagesContainer.append(...this.imageComponents);
-	}
+        this.imagesContainer.append(...this.imageComponents);
+    }
 }
 
 
