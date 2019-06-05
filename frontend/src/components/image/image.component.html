@@ -1,12 +1,16 @@
 <style>
     :host {
         display: inline-block;
-        width: 100%;
     }
 
-
     .description {
-        height: 10px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .image-description {
+        flex-grow: 1;
     }
 
     #like-button {
@@ -18,13 +22,11 @@
         vertical-align: middle;
         width: 100%;
         height: auto;
-        background-size: 20px 30px;
     }
 
     .liked {
         fill: red;
     }
-
 </style>
 
 <div class="image-container">
@@ -32,6 +34,9 @@
 </div>
 
 <div class="description">
+    <span class="image-description">
+        this is an image
+    </span>
     <button id="like-button">
         <svg id="like-icon"
              version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +49,5 @@
 			C474.988,241.811,492.719,206.017,492.719,166.008z"></path>
         </svg>
     </button>
-
 </div>
 
