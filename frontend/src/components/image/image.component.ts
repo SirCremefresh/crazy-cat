@@ -2,6 +2,7 @@ import template from './image.component.html';
 
 export class ImageComponent extends HTMLElement {
     likes = Math.floor(Math.random() * 50);
+    liked = false;
     likeIcon: HTMLElement;
     likeButton: HTMLButtonElement;
 
@@ -15,7 +16,12 @@ export class ImageComponent extends HTMLElement {
         this.likeButton = <HTMLButtonElement>this.shadowRoot.getElementById("like-button");
 
         this.likeButton.addEventListener('click', () => {
-            this.likeIcon.classList.add("liked");
+            if (this.liked) {
+                this.likeIcon.classList.remove("liked")
+            } else {
+                this.likeIcon.classList.add("liked");
+            }
+            this.liked = !this.liked;
         });
 
 
