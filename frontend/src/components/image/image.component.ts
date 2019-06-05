@@ -1,18 +1,20 @@
 import template from './image.component.html';
 
 export class ImageComponent extends HTMLElement {
-	constructor() {
-		super();
+    likes = Math.floor(Math.random() * 50);
 
-		this.attachShadow({mode: 'open'});
-		this.shadowRoot.innerHTML = template;
-	}
+    constructor() {
+        super();
 
-	public disconnectedCallback() {
-	}
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = template;
+    }
 
-	private setNavAttribute() {
-	}
+    public disconnectedCallback() {
+    }
+
+    private setNavAttribute() {
+    }
 }
 
 customElements.define('app-image', ImageComponent);
