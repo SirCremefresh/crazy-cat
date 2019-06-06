@@ -1,4 +1,5 @@
 import template from './settings.page.html';
+import '../../components/switch/switch.component';
 
 export class HomePage extends HTMLElement {
     constructor() {

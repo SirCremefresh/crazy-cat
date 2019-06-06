@@ -1,7 +1,6 @@
 import template from './image.component.html';
 
 export class ImageComponent extends HTMLElement {
-    likes = Math.floor(Math.random() * 50);
     liked = false;
     likeIcon: HTMLElement;
     likeButton: HTMLButtonElement;
