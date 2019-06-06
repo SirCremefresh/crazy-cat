@@ -12,7 +12,7 @@ export class ImageComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
 
-        this.likeIcon = this.shadowRoot.getElementById("like-icon");
+        this.likeIcon = this.shadowRoot.querySelector("#like-button > svg");
         this.likeButton = <HTMLButtonElement>this.shadowRoot.getElementById("like-button");
 
         this.likeButton.addEventListener('click', () => {
