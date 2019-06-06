@@ -13,7 +13,6 @@
 
     nav {
         grid-area: nav;
-        background-color: blue;
     }
 
     nav[data-open="false"] {
@@ -36,6 +35,7 @@
 
     #logo {
         grid-area: logo;
+        height: 60px;
     }
 
     @media (min-width: 600px) {
@@ -46,10 +46,16 @@
         }
 
         nav[data-open] {
-            display: inline-block;
+            display: flex;
+            align-items: center;
         }
 
         nav a {
+            display: inline-block;
+        }
+
+        .links {
+            flex-grow: 1;
             display: inline-block;
         }
 
@@ -71,12 +77,12 @@
     <button id="navigation-button">
         ☰
     </button>
-    <span id="logo">
-		Header
-	</span>
+    <img id="logo" src="../../assets/logo.svg" alt="crazy cat logo">
     <nav id="navigation" data-open="false">
-        <a is="app-link" href="/not-found">not found</a>
-        <a is="app-link" href="/">home</a>
+        <div class="links">
+            <a is="app-link" href="/not-found">not found</a>
+            <a is="app-link" href="/">home</a>
+        </div>
         <a is="app-link" href="/settings" class="settings">
             <span class="settings-icon">⚙</span>
             <span class="settings-text">Settings</span>
