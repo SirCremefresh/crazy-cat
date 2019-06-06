@@ -10,7 +10,7 @@ Im Modul 152 haben wir den Auftrag erhalten eine Webseite mit Multimediainhalten
 * Jonas Koller  
 
 ## Kurzbeschrieb
-Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angesehen werden können. Diese können dann geliked werden. Es gibt eine Übersicht der Bilder sowie Videos und eine Detailansicht.  Zudem gibt es einen "Pussy of the Month" Bereich auf der Website. Hier werden die bestbewerteten Katzen von diesem Monat dargestellt.
+Es wird eine Internetseite erstellt, auf der Bilder und Videos von Katzen angesehen werden können. Diese können dann geliked werden. Es gibt eine Übersicht der Bilder sowie Videos und eine Detailansicht.  Zudem gibt es einen "Cat of the Month" Bereich auf der Website. Hier werden die bestbewerteten Katzen von diesem Monat dargestellt.
 
 ## Personas (Potenzielle Nutzer)  
 Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut mit dem Internet sind. Diese teilen das gemeinsame Interesse an Katzen. Die potenziellen Benutzer sind auf der Suche nach leichter Unterhaltung für zu Hause und unterwegs.
@@ -59,7 +59,7 @@ Auf der Website werden Benutzer im Alter von 20 bis 45 erwartet, welche vertraut
 * Elena möchte, dass sich Webseiten und Firmen mit dem Thema "LGBT" auseinander setzen, wie sie das tut. Deshalb findet sie es super, wenn es einen "Pride"-Modus gibt, mit welchem sowohl Elena, wie auch die Webseite sich zu "LGBT" bekennen können. Elena fühlt sich verbundener zu Webseiten, welche die gleichen Interessen teilen wie sie und sich für eine offenere Welt einsetzen und ein Zeichen setzen wollen.
 
 ### Persona 2: Stefanie Meier
-* Stefanie interessiert sich nur für die besten Katzenbilder, weil sie wegen ihrem Job wenig Zeit hat, und will daher schnell und einfach die Pussy of the Month ansehen können, damit ihre wertvolle Zeit nicht unnötig verschwendet wird, aber sie trotzdem Katzenbilder sieht, weil sie ihr gefallen, weil Katzen so flauschig sind.
+* Stefanie interessiert sich nur für die besten Katzenbilder, weil sie wegen ihrem Job wenig Zeit hat, und will daher schnell und einfach die Cat of the Month ansehen können, damit ihre wertvolle Zeit nicht unnötig verschwendet wird, aber sie trotzdem Katzenbilder sieht, weil sie ihr gefallen, weil Katzen so flauschig sind.
 * Stefanie möchte Katzenbilder "liken", damit sie sich aktiv einbringen kann und ihre Meinung zu Bildern auf einfache Art äussern kann. Da sie viel auf Social Media unterwegs ist, kennt sie ähnliche Funktionen bereits von Instagram und Facebook. Diese Möglichkeit möchte sie auch hier haben.
 
 ### Persona 3: Thomas Huber

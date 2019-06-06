@@ -1,5 +1,5 @@
 {
-  "name": "rate-my-pussy",
+  "name": "crazy-cat",
   "version": "1.0.0",
   "description": "Im Modul 152 haben wir den Auftrag erhalten eine Webseite mit Multimediainhalten zu gestalten. Die Dokumentation dieser Arbeit befindet sich in dieser Datei und der Sourcecode in diesem Git-Repository.",
   "main": "index.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SirCremefresh/rate-my-pussy.git"
+    "url": "git+https://github.com/SirCremefresh/crazy-cat.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SirCremefresh/rate-my-pussy/issues"
+    "url": "https://github.com/SirCremefresh/crazy-cat/issues"
   },
-  "homepage": "https://github.com/SirCremefresh/rate-my-pussy#readme",
+  "homepage": "https://github.com/SirCremefresh/crazy-cat#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
