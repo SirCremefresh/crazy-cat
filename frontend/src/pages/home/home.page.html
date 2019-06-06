@@ -11,6 +11,12 @@
         background: gray;
         width: 100%;
     }
+
+    @media (min-width: 600px) {
+        #images {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+    }
 </style>
 
 <div id="images"></div>
