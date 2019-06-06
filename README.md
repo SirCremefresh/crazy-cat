@@ -1,4 +1,4 @@
-# Projektarbeit "Rate my pussy"
+# Projektarbeit "Crazy cat"
 Im Modul 152 haben wir den Auftrag erhalten eine Webseite mit Multimediainhalten zu gestalten. Die Dokumentation dieser Arbeit befindet sich in dieser Datei und der Sourcecode in diesem Git-Repository.
 
 # Hosting is under
