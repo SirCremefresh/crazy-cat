@@ -5,6 +5,7 @@ export class ImageComponent extends HTMLElement {
     liked = false;
     likeIcon: HTMLElement;
     likeButton: HTMLButtonElement;
+    likeAmount: HTMLElement;
 
     constructor() {
         super();
@@ -14,12 +15,17 @@ export class ImageComponent extends HTMLElement {
 
         this.likeIcon = this.shadowRoot.querySelector("#like-button > svg");
         this.likeButton = <HTMLButtonElement>this.shadowRoot.getElementById("like-button");
+        this.likeAmount = this.shadowRoot.getElementById("like-amount");
+
+        this.likeAmount.innerText = this.getRandomNumber().toString();
 
         this.likeButton.addEventListener('click', () => {
             if (this.liked) {
-                this.likeIcon.classList.remove("liked")
+                this.likeIcon.classList.remove("liked");
+                this.likeAmount.innerText = (+this.likeAmount.innerText - 1).toString();
             } else {
                 this.likeIcon.classList.add("liked");
+                this.likeAmount.innerText = (+this.likeAmount.innerText + 1).toString();
             }
             this.liked = !this.liked;
         });
@@ -31,6 +37,12 @@ export class ImageComponent extends HTMLElement {
     }
 
     private setNavAttribute() {
+    }
+
+    private getRandomNumber() {
+        let min = Math.ceil(0);
+        let max = Math.floor(18);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
