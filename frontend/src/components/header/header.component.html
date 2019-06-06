@@ -1,0 +1,69 @@
+<style>
+    :host {
+        display: block;
+    }
+
+    header {
+        grid-area: header;
+        background-color: gray;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto auto;
+        grid-template-areas: "navigation-button logo" "nav nav";
+    }
+
+    nav {
+        background-color: blue;
+    }
+
+    nav[data-open="false"] {
+        display: none;
+    }
+
+
+    nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #navigation-button {
+        grid-area: navigation-button;
+    }
+
+    #logo {
+        grid-area: logo;
+    }
+
+    @media (min-width: 600px) {
+        header {
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto;
+            grid-template-areas: "logo nav";
+        }
+
+        nav[data-open="false"] {
+            display: block;
+        }
+
+        #navigation-button {
+            display: none;
+        }
+    }
+</style>
+
+<header>
+    <button id="navigation-button">
+        ☰
+    </button>
+    <span id="logo">
+		Header
+	</span>
+    <nav id="navigation" data-open="false">
+        <a is="app-link" href="/not-found">not found</a>
+        <a is="app-link" href="/">home</a>
+        <a is="app-link" href="/settings" id="settings-button">
+            <span class="settings-icon">⚙</span>
+            <span class="settings-text">Settings</span>
+        </a>
+    </nav>
+</header>
