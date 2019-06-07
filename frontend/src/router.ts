@@ -64,6 +64,7 @@ async function updateRoute(): Promise<void> {
 
     let component;
     if (route === undefined) {
+        console.warn(`could not find path: ${getPath()}`);
         await notFoundRoute.page;
         component = notFoundRoute.component;
         history.pushState({}, 'not found', trimSlashes(notFoundRoute.path));
