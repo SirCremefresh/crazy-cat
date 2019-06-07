@@ -1,5 +1,7 @@
 import template from './image.component.html';
 
+const templateNode = document.createRange().createContextualFragment(template);
+
 export class ImageComponent extends HTMLElement {
     liked = false;
     likeIcon: HTMLElement;
@@ -10,7 +12,7 @@ export class ImageComponent extends HTMLElement {
         super();
 
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = template;
+        this.shadowRoot.appendChild(templateNode.cloneNode(true));
 
         this.likeIcon = this.shadowRoot.querySelector("#like-button > svg");
         this.likeButton = <HTMLButtonElement>this.shadowRoot.getElementById("like-button");
