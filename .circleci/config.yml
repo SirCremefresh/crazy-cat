@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
       - run: npm --prefix frontend install
+      - run: npm --prefix functions install
       - firebase-deploy/deploy:
           token: $token
 
