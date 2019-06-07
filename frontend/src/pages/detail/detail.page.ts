@@ -1,10 +1,11 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
+import {getRandomNumber} from "../../util";
 
 export class DetailPage extends HTMLElement {
-    likeAmount = 3;
-    dislikeAmount = 5;
+    likeAmount = getRandomNumber();
+    dislikeAmount = getRandomNumber();
     likeAmountElement: HTMLElement;
     dislikeAmountElement: HTMLElement;
 

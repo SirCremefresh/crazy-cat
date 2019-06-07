@@ -1,12 +1,10 @@
 import template from './image.component.html';
 import {LinkComponent} from "../link/link.component";
 import '../like-button/like-button.component'
+import {getRandomNumber} from "../../util";
 
 const templateNode = document.createRange().createContextualFragment(template);
 
-function getRandomNumber() {
-    return Math.floor(Math.random() * 18);
-}
 
 export class ImageComponent extends HTMLElement {
     likeAmount = getRandomNumber();
