@@ -1,17 +1,18 @@
 import template from './image.component.html';
 import {LinkComponent} from "../link/link.component";
+import '../like-button/like-button.component'
 
 const templateNode = document.createRange().createContextualFragment(template);
 
 function getRandomNumber() {
-    return Math.floor(Math.random() * 18).toString();
+    return Math.floor(Math.random() * 18);
 }
 
 export class ImageComponent extends HTMLElement {
-    liked = false;
+    likeAmount = getRandomNumber();
     likeIcon: SVGSVGElement;
     likeButton: HTMLButtonElement;
-    likeAmount: HTMLElement;
+    likeAmountElement: HTMLElement;
 
     detailLink: LinkComponent;
 
@@ -24,22 +25,24 @@ export class ImageComponent extends HTMLElement {
         this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
         this.likeIcon = this.likeButton.querySelector("svg");
         this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
-        this.likeAmount = this.shadowRoot.querySelector("[data-js=like-amount]");
+        this.likeAmountElement = this.shadowRoot.querySelector("[data-js=like-amount]");
 
-        this.likeAmount.textContent = getRandomNumber();
-
+        this.updateLikeAmount();
         this.detailLink.href = `detail/${getRandomNumber()}`;
 
-        this.likeButton.addEventListener('click', () => {
-            if (this.liked) {
-                this.likeIcon.classList.remove("liked");
-                this.likeAmount.innerText = (+this.likeAmount.innerText - 1).toString();
+        this.likeButton.addEventListener('change', (event: CustomEvent) => {
+            console.log("change;")
+            if (event.detail) {
+                this.likeAmount++;
             } else {
-                this.likeIcon.classList.add("liked");
-                this.likeAmount.innerText = (+this.likeAmount.innerText + 1).toString();
+                this.likeAmount--;
             }
-            this.liked = !this.liked;
+            this.updateLikeAmount();
         });
+    }
+
+    updateLikeAmount() {
+        this.likeAmountElement.textContent = `${this.likeAmount}`;
     }
 }
 
