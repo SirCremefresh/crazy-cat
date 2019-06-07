@@ -22,7 +22,7 @@ initRouter({
             path: 'detail',
             component: 'app-detail-page',
             page: import('./pages/detail/detail.page'),
-            hasVariable: true
+            // hasVariable: true
         }
     ]
 });
