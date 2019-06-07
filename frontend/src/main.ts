@@ -3,7 +3,7 @@ import {initRouter} from './router';
 
 initRouter({
     notFoundRoute: {
-        path: 'not-found',
+        path: '/not-found',
         component: 'app-not-found-page',
         page: import('./pages/not-found/not-found.page'),
     },
