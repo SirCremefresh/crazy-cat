@@ -12,7 +12,7 @@ export class LayoutComponent extends HTMLElement {
         this.shadowRoot.innerHTML = template;
 
         this.footer = this.shadowRoot.querySelector("footer");
-        this.footer.innerHTML = new Date().getFullYear() + ' - JOSIDO dev';
+        this.footer.textContent = new Date().getFullYear() + ' - JOSIDO dev';
     }
 }
 

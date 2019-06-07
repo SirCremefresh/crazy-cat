@@ -1,5 +1,5 @@
 <style>
-    #images {
+    .images {
         padding: 15px;
         display: grid;
         grid-gap: 10px;
@@ -13,10 +13,10 @@
     }
 
     @media (min-width: 600px) {
-        #images {
+        .images {
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
     }
 </style>
 
-<div id="images"></div>
+<div class="images" data-js="images"></div>

@@ -11,7 +11,7 @@ export class HomePage extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
 
-        this.imagesContainer = this.shadowRoot.getElementById('images');
+        this.imagesContainer = this.shadowRoot.querySelector('[data-js=images]');
 
         for (let i = 0; i < 20; i++) {
             this.imageComponents.push(document.createElement('app-image'));

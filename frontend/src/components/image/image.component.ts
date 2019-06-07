@@ -9,7 +9,7 @@ function getRandomNumber() {
 
 export class ImageComponent extends HTMLElement {
     liked = false;
-    likeIcon: HTMLElement;
+    likeIcon: SVGSVGElement;
     likeButton: HTMLButtonElement;
     likeAmount: HTMLElement;
 
@@ -21,10 +21,10 @@ export class ImageComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(templateNode.cloneNode(true));
 
-        this.likeIcon = this.shadowRoot.querySelector("[data-js=like-button] > svg");
         this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
+        this.likeIcon = this.likeButton.querySelector("svg");
         this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
-        this.likeAmount = this.shadowRoot.getElementById("like-amount");
+        this.likeAmount = this.shadowRoot.querySelector("[data-js=like-amount]");
 
         this.likeAmount.textContent = getRandomNumber();
 

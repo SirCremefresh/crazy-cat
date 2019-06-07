@@ -29,7 +29,7 @@
         display: none;
     }
 
-    #navigation-button {
+    .navigation-button {
         grid-area: navigation-button;
     }
 
@@ -70,7 +70,7 @@
             padding-right: 4px;
         }
 
-        #navigation-button {
+        .navigation-button {
             display: none;
         }
 
@@ -88,13 +88,13 @@
 </style>
 
 <header>
-    <button id="navigation-button">
+    <button class="navigation-button" data-js="navigation-button">
         ☰
     </button>
     <a is="app-link" href="/">
         <img id="logo" src="../../assets/logo.svg" alt="crazy cat logo">
     </a>
-    <nav id="navigation" data-open="false">
+    <nav data-js="navigation" data-open="false">
         <div class="links">
             <a is="app-link" href="/not-found">not found</a>
             <a is="app-link" href="/">home</a>
