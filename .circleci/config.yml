@@ -7,8 +7,8 @@ jobs:
       - image: 'circleci/node:lts'
     steps:
       - checkout
-      - run: npm --prefix frontend install
-      - run: npm --prefix functions install
+      - run: npm --prefix frontend ci
+      - run: npm --prefix functions ci
       - firebase-deploy/deploy:
           token: $token
 
