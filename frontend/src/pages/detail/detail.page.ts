@@ -2,15 +2,18 @@ import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
 import {getRandomNumber} from "../../util";
+import {getPath} from "../../router";
 
 export class DetailPage extends HTMLElement {
     likeAmount = getRandomNumber();
     dislikeAmount = getRandomNumber();
+
     likeAmountElement: HTMLElement;
     dislikeAmountElement: HTMLElement;
-
     likeButton: HTMLButtonElement;
     dislikeButton: HTMLButtonElement;
+
+    descriptionElement: HTMLElement;
 
     constructor() {
         super();
@@ -26,11 +29,19 @@ export class DetailPage extends HTMLElement {
 
         this.likeAmountElement = this.shadowRoot.querySelector("[data-js=like-amount]");
         this.dislikeAmountElement = this.shadowRoot.querySelector("[data-js=dislike-amount]");
+
+        this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]")
     }
 
     connectedCallback() {
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);
+
+        if (getPath().indexOf("video") === -1) {
+            this.descriptionElement.textContent += " image"
+        } else {
+            this.descriptionElement.textContent += " video"
+        }
 
         this.updateCounters()
     }

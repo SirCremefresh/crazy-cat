@@ -39,7 +39,7 @@ function getDecodedURI() {
     return decodeURI(window.location.pathname);
 }
 
-function getPath(): string {
+export function getPath(): string {
     const path = getDecodedURI();
     return trimSlashes(path);
 }
