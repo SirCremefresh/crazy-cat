@@ -11,6 +11,8 @@ export class HeaderComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
 
+        this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
+
         this.menuButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=navigation-button]");
         this.navigation = <HTMLElement>this.shadowRoot.querySelector("[data-js=navigation]");
     }
