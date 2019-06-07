@@ -22,7 +22,7 @@ export class HomePage extends HTMLElement {
 
         this.imageComponents.forEach((e) => {
             e.addEventListener('click', () => {
-                navigateTo('detail');
+                navigateTo('detail/1');
             })
         });
     }
