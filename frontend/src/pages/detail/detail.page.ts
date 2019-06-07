@@ -1,4 +1,6 @@
 import template from './detail.page.html';
+import '../../components/like-button/like-button.component'
+import '../../components/dislike-button/dislike-button.component'
 
 export class DetailPage extends HTMLElement {
     constructor() {
