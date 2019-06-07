@@ -5,6 +5,6 @@ orbs:
 
 workflows:
   "Build And Deploy":
-    jobs:
+    commands:
       - firebase-deploy/deploy:
           token: ${token}
