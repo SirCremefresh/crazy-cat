@@ -1,18 +1,35 @@
-
+version: 2.1
 orbs:
   firebase-deploy: cloudliner/firebase-deploy@0.0.2
-
-version: 2.1
 jobs:
-  myjob:
+  build:
     docker:
-      - image: "circleci/node:9.6.1"
+      - image: 'circleci/node:lts'
     steps:
+      - checkout
+      - run: npm --prefix frontend install
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - frontend/dist
+            - firebase.json
+            - .firebaserc
+            - firestore.rules
+            - firestore.indexes.json
+  deploy:
+    docker:
+      - image: 'circleci/node:lts'
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - firebase-deploy/deploy:
-          token: ${token}
+          token: $token
 
 workflows:
-  "Build And Deploy":
+  build-and-deploy:
     jobs:
-      - myjob:
-          token: ${token}
+      - build
+      - deploy:
+          requires:
+            - build
+
