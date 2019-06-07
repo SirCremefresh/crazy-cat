@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: npm --prefix frontend install
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /tmp/crazy-cat
           paths:
             - frontend/dist
             - firebase.json
@@ -21,7 +21,7 @@ jobs:
       - image: 'circleci/node:lts'
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/crazy-cat
       - firebase-deploy/deploy:
           token: $token
 
