@@ -31,7 +31,6 @@ export class ImageComponent extends HTMLElement {
         this.detailLink.href = `detail/${getRandomNumber()}`;
 
         this.likeButton.addEventListener('change', (event: CustomEvent) => {
-            console.log("change;")
             if (event.detail) {
                 this.likeAmount++;
             } else {

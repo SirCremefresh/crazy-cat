@@ -2,7 +2,6 @@ import template from './layout.component.html'
 import '../header/header.component'
 
 export class LayoutComponent extends HTMLElement {
-
     footer: HTMLElement;
 
     constructor() {

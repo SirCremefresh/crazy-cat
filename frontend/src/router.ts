@@ -1,5 +1,3 @@
-import './components/layout/layout.component';
-
 interface Route {
     component: string,
     path: string,

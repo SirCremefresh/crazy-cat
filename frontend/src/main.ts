@@ -1,4 +1,4 @@
-import './components/link/link.component';
+import './initial-components';
 import {initRouter} from './router';
 
 initRouter({
