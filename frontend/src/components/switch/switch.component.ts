@@ -2,7 +2,7 @@ import template from './switch.component.html';
 
 export class SwitchComponent extends HTMLElement {
 
-    enabled: boolean = true;
+    enabled: boolean = false;
     outerButton: HTMLButtonElement;
     innerButton: HTMLElement;
 
