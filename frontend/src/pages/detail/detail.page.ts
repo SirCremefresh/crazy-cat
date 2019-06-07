@@ -1,5 +1,4 @@
 import template from './detail.page.html';
-import '../../components/imagedetail/imagedetail.component';
 
 export class DetailPage extends HTMLElement {
     constructor() {
