@@ -11,8 +11,8 @@ jobs:
       - firebase-deploy/deploy:
           token: ${token}
 
-#workflows:
-#  "Build And Deploy":
-#    commands:
-#      - firebase-deploy/deploy:
-#          token: ${token}
+workflows:
+  "Build And Deploy":
+    jobs:
+      - myjob:
+          token: ${token}
