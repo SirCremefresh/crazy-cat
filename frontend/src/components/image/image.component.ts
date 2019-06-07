@@ -1,6 +1,11 @@
 import template from './image.component.html';
+import {LinkComponent} from "../link/link.component";
 
 const templateNode = document.createRange().createContextualFragment(template);
+
+function getRandomNumber() {
+    return Math.floor(Math.random() * 18).toString();
+}
 
 export class ImageComponent extends HTMLElement {
     liked = false;
@@ -8,17 +13,22 @@ export class ImageComponent extends HTMLElement {
     likeButton: HTMLButtonElement;
     likeAmount: HTMLElement;
 
+    detailLink: LinkComponent;
+
     constructor() {
         super();
 
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(templateNode.cloneNode(true));
 
-        this.likeIcon = this.shadowRoot.querySelector("#like-button > svg");
-        this.likeButton = <HTMLButtonElement>this.shadowRoot.getElementById("like-button");
+        this.likeIcon = this.shadowRoot.querySelector("[data-js=like-button] > svg");
+        this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
+        this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
         this.likeAmount = this.shadowRoot.getElementById("like-amount");
 
-        this.likeAmount.innerText = this.getRandomNumber().toString();
+        this.likeAmount.textContent = getRandomNumber();
+
+        this.detailLink.href = `detail/${getRandomNumber()}`;
 
         this.likeButton.addEventListener('click', () => {
             if (this.liked) {
@@ -30,20 +40,6 @@ export class ImageComponent extends HTMLElement {
             }
             this.liked = !this.liked;
         });
-
-
-    }
-
-    public disconnectedCallback() {
-    }
-
-    private setNavAttribute() {
-    }
-
-    private getRandomNumber() {
-        let min = Math.ceil(0);
-        let max = Math.floor(18);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 

@@ -1,6 +1,5 @@
 import '../../components/image/image.component';
 import template from './home.page.html';
-import { navigateTo } from '../../router';
 
 export class HomePage extends HTMLElement {
     private imagesContainer: HTMLElement;
@@ -19,12 +18,6 @@ export class HomePage extends HTMLElement {
         }
 
         this.imagesContainer.append(...this.imageComponents);
-
-        this.imageComponents.forEach((e) => {
-            e.addEventListener('click', () => {
-                navigateTo('detail/1');
-            })
-        });
     }
 }
 

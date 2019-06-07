@@ -13,7 +13,7 @@
         flex-grow: 1;
     }
 
-    #like-button {
+    .like-button {
         border: none;
         background-color: transparent;
     }
@@ -24,24 +24,25 @@
         height: auto;
     }
 
-
     /*noinspection CssUnusedSymbol*/
     .liked {
         fill: #06e900;
     }
 </style>
 
-<div class="image-container">
-    <img class="image" src="../../assets/dummy.png" alt="this is a dummy image"/>
-</div>
+<a is="app-link" data-js="detail-link">
+    <div class="image-container">
+        <img class="image" src="../../assets/dummy.png" alt="this is a dummy image"/>
+    </div>
+</a>
 
 <div class="description">
     <span class="image-description">
         this is an image
     </span>
-    <button id="like-button" aria-label="like image">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-             width="20px" height="20px" viewBox="0 0 475.099 475.099" style="enable-background:new 0 0 475.099 475.099;"
+    <button data-js="like-button" class="like-button" aria-label="like image">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="20px" height="20px" viewBox="0 0 475.099 475.099"
              xml:space="preserve">
                 <g>
                     <path d="M442.829,265.532c9.328-14.089,13.986-29.598,13.986-46.538c0-19.607-7.225-36.637-21.687-51.117
