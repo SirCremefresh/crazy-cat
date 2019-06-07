@@ -11,18 +11,28 @@ export class DislikeButtonComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
 
+        this.onDislikeButtonClick = this.onDislikeButtonClick.bind(this);
+
         this.dislikeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=dislike-button]");
         this.dislikeIcon = this.dislikeButton.querySelector("svg");
+    }
 
-        this.dislikeButton.addEventListener('click', () => {
-            this.disliked = !this.disliked;
-            if (this.disliked) {
-                this.dislikeIcon.classList.add("disliked");
-            } else {
-                this.dislikeIcon.classList.remove("disliked");
-            }
-            this.dispatchEvent(new CustomEvent('change', {detail: this.disliked}));
-        });
+    connectedCallback() {
+        this.dislikeButton.addEventListener('click', this.onDislikeButtonClick);
+    }
+
+    onDislikeButtonClick() {
+        this.disliked = !this.disliked;
+        if (this.disliked) {
+            this.dislikeIcon.classList.add("disliked");
+        } else {
+            this.dislikeIcon.classList.remove("disliked");
+        }
+        this.dispatchEvent(new CustomEvent('change', {detail: this.disliked}));
+    }
+
+    disconnectedCallback() {
+        this.dislikeButton.removeEventListener('click', this.onDislikeButtonClick);
     }
 }
 

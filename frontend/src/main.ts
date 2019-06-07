@@ -19,6 +19,12 @@ initRouter({
             page: import('./pages/settings/settings.page'),
         },
         {
+            path: 'detail/video',
+            component: 'app-detail-page',
+            page: import('./pages/detail/detail.page'),
+            hasVariable: true
+        },
+        {
             path: 'detail',
             component: 'app-detail-page',
             page: import('./pages/detail/detail.page'),

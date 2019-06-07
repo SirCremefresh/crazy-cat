@@ -7,6 +7,7 @@ const templateNode = document.createRange().createContextualFragment(template);
 
 
 export class ImageComponent extends HTMLElement {
+    isVideo = Math.random() >= 0.5;
     likeAmount = getRandomNumber();
     likeIcon: SVGSVGElement;
     likeButton: HTMLButtonElement;
@@ -20,26 +21,37 @@ export class ImageComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(templateNode.cloneNode(true));
 
+        this.onLikeButtonChange = this.onLikeButtonChange.bind(this);
+
         this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
         this.likeIcon = this.likeButton.querySelector("svg");
-        this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
         this.likeAmountElement = this.shadowRoot.querySelector("[data-js=like-amount]");
 
-        this.updateLikeAmount();
-        this.detailLink.href = `detail/${getRandomNumber()}`;
+        this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
+        this.detailLink.href = `detail${(this.isVideo) ? '/video' : ''}/${getRandomNumber()}`;
+    }
 
-        this.likeButton.addEventListener('change', (event: CustomEvent) => {
-            if (event.detail) {
-                this.likeAmount++;
-            } else {
-                this.likeAmount--;
-            }
-            this.updateLikeAmount();
-        });
+    connectedCallback() {
+        this.likeButton.addEventListener('change', this.onLikeButtonChange);
+
+        this.updateLikeAmount();
+    }
+
+    onLikeButtonChange(event: CustomEvent) {
+        if (event.detail) {
+            this.likeAmount++;
+        } else {
+            this.likeAmount--;
+        }
+        this.updateLikeAmount();
     }
 
     updateLikeAmount() {
         this.likeAmountElement.textContent = `${this.likeAmount}`;
+    }
+
+    public disconnectedCallback() {
+        this.likeButton.removeEventListener('change', this.onLikeButtonChange);
     }
 }
 

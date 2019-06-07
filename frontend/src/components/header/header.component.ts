@@ -13,12 +13,16 @@ export class HeaderComponent extends HTMLElement {
 
         this.menuButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=navigation-button]");
         this.navigation = <HTMLElement>this.shadowRoot.querySelector("[data-js=navigation]");
+    }
 
-        this.menuButton.onclick = () => {
-            this.isMenuOpen = !this.isMenuOpen;
-            this.setNavAttribute();
-        };
+    connectedCallback() {
+        this.menuButton.addEventListener('click', this.onMenuButtonClick);
 
+        this.setNavAttribute();
+    }
+
+    private onMenuButtonClick() {
+        this.isMenuOpen = !this.isMenuOpen;
         this.setNavAttribute();
     }
 
@@ -27,7 +31,7 @@ export class HeaderComponent extends HTMLElement {
     }
 
     public disconnectedCallback() {
-        this.menuButton.onclick = undefined;
+        this.menuButton.removeEventListener('click', this.onMenuButtonClick);
     }
 }
 
