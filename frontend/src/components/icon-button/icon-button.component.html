@@ -1,12 +1,9 @@
 <style>
-    .button {
+    :host {
         border: none;
         background-color: transparent;
-        height: 100%;
-        width: 100%;
     }
 </style>
 
-<button class="button" aria-label="icon button">
-    <slot></slot>
-</button>
+<slot></slot>
+<span data-js="counter"></span>

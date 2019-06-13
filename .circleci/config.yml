@@ -1,6 +1,6 @@
 version: 2.1
-#orbs:
-#  firebase-deploy: cloudliner/firebase-deploy@0.0.2
+orbs:
+  firebase-deploy: cloudliner/firebase-deploy@0.0.2
 jobs:
   deploy:
     docker:
@@ -9,8 +9,8 @@ jobs:
       - checkout
       - run: npm --prefix frontend ci
       - run: npm --prefix functions ci
-#      - firebase-deploy/deploy:
-#          token: $token
+      - firebase-deploy/deploy:
+          token: $token
 
 workflows:
   build-and-deploy:
