@@ -20,7 +20,7 @@ exports.images = functions.https.onRequest(async (request: any, response: any) =
 });
 
 
-exports.generateThumbnail = functions.storage.object().onFinalize(async (file: ObjectMetadata) => {
+exports.generateResponsiveContent = functions.storage.object().onFinalize(async (file: ObjectMetadata) => {
 
     console.log(`file: ${JSON.stringify(file)}`);
 

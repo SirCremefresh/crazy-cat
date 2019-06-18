@@ -12,7 +12,7 @@
   },
   "main": "lib/index.js",
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.18",
