@@ -33,6 +33,13 @@ exports.generateThumbnail = functions.storage.object().onFinalize(async (file: O
         return;
     }
 
+    if (file.contentType === 'video/mp4') {
+        await handleVideoConversion(file, filePath);
+    }
+
+});
+
+async function handleVideoConversion(file: ObjectMetadata, filePath: string) {
     const remoteWriteStream = bucket.file('transformed/' + filePath)
         .createWriteStream({
             metadata: {
@@ -44,7 +51,7 @@ exports.generateThumbnail = functions.storage.object().onFinalize(async (file: O
     const remoteReadStream = bucket.file(filePath).createReadStream();
 
     await uploadInSize(remoteReadStream, remoteWriteStream);
-});
+}
 
 function uploadInSize(readStream: Readable, writeStream: Writable) {
     return new Promise((resolve, reject) => {
