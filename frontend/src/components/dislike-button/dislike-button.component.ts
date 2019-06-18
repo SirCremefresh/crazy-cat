@@ -1,38 +1,53 @@
-import template from './dislike-button.component.html';
+import html from './dislike-button.component.html';
+import {IconCounterButtonComponent} from "../icon-counter-button/icon-counter-button.component";
+
+const template = document.createElement('template');
+template.innerHTML = html;
 
 export class DislikeButtonComponent extends HTMLElement {
-    disliked = false;
-    dislikeButton: HTMLButtonElement;
-    dislikeIcon: SVGSVGElement;
+    private iconCounterButtonElement: IconCounterButtonComponent;
 
     constructor() {
         super();
 
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = template;
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        this.onDislikeButtonClick = this.onDislikeButtonClick.bind(this);
+        this.onChange = this.onChange.bind(this);
 
-        this.dislikeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=dislike-button]");
-        this.dislikeIcon = this.dislikeButton.querySelector("svg");
+        this.iconCounterButtonElement = <IconCounterButtonComponent>this.shadowRoot.querySelector("[data-js=icon-counter-button]");
     }
 
     connectedCallback() {
-        this.dislikeButton.addEventListener('click', this.onDislikeButtonClick);
+        this.iconCounterButtonElement.addEventListener('change', this.onChange);
     }
 
-    onDislikeButtonClick() {
-        this.disliked = !this.disliked;
-        if (this.disliked) {
-            this.dislikeIcon.classList.add("disliked");
-        } else {
-            this.dislikeIcon.classList.remove("disliked");
-        }
-        this.dispatchEvent(new CustomEvent('change', {detail: this.disliked}));
+    public disconnectedCallback() {
+        this.iconCounterButtonElement.removeEventListener('change', this.onChange);
     }
 
-    disconnectedCallback() {
-        this.dislikeButton.removeEventListener('click', this.onDislikeButtonClick);
+    onChange(e: CustomEvent) {
+        this.dispatchEvent(new CustomEvent('change', {detail: e.detail}));
+    }
+
+    setStatus(disliked: boolean) {
+        this.iconCounterButtonElement.setStatus(disliked);
+    }
+
+    get dislikes(): number {
+        return this.iconCounterButtonElement.count;
+    }
+
+    set dislikes(value: number) {
+        this.iconCounterButtonElement.count = value;
+    }
+
+    get disliked(): boolean {
+        return this.iconCounterButtonElement.active;
+    }
+
+    set disliked(value: boolean) {
+        this.iconCounterButtonElement.active = value;
     }
 }
 

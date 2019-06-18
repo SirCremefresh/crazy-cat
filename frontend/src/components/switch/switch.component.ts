@@ -14,8 +14,8 @@ export class SwitchComponent extends HTMLElement {
 
         this.onOuterButtonClick = this.onOuterButtonClick.bind(this);
 
-        this.outerButton = this.shadowRoot.querySelector(".outer");
-        this.innerButton = this.shadowRoot.querySelector(".inner");
+        this.outerButton = this.shadowRoot.querySelector("[data-js=outer]");
+        this.innerButton = this.shadowRoot.querySelector("[data-js=inner]");
     }
 
     connectedCallback() {

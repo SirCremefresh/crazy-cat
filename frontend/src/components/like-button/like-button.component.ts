@@ -1,38 +1,54 @@
-import template from './like-button.component.html';
+import html from './like-button.component.html';
+import '../icon-counter-button/icon-counter-button.component'
+import {IconCounterButtonComponent} from "../icon-counter-button/icon-counter-button.component";
+
+const template = document.createElement('template');
+template.innerHTML = html;
 
 export class LikeButtonComponent extends HTMLElement {
-    liked = false;
-    likeButton: HTMLButtonElement;
-    likeIcon: SVGSVGElement;
+    private iconCounterButtonElement: IconCounterButtonComponent;
 
     constructor() {
         super();
 
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = template;
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        this.onLikeButtonClick = this.onLikeButtonClick.bind(this);
+        this.onChange = this.onChange.bind(this);
 
-        this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
-        this.likeIcon = this.likeButton.querySelector("svg");
+        this.iconCounterButtonElement = <IconCounterButtonComponent>this.shadowRoot.querySelector("[data-js=icon-counter-button]");
     }
 
     connectedCallback() {
-        this.likeButton.addEventListener('click', this.onLikeButtonClick);
-    }
-
-    onLikeButtonClick() {
-        this.liked = !this.liked;
-        if (this.liked) {
-            this.likeIcon.classList.add("liked");
-        } else {
-            this.likeIcon.classList.remove("liked");
-        }
-        this.dispatchEvent(new CustomEvent('change', {detail: this.liked}));
+        this.iconCounterButtonElement.addEventListener('change', this.onChange);
     }
 
     public disconnectedCallback() {
-        this.likeButton.removeEventListener('click', this.onLikeButtonClick);
+        this.iconCounterButtonElement.removeEventListener('change', this.onChange);
+    }
+
+    onChange(e: CustomEvent) {
+        this.dispatchEvent(new CustomEvent('change', {detail: e.detail}));
+    }
+
+    setStatus(liked: boolean) {
+        this.iconCounterButtonElement.setStatus(liked);
+    }
+
+    get likes(): number {
+        return this.iconCounterButtonElement.count;
+    }
+
+    set likes(value: number) {
+        this.iconCounterButtonElement.count = value;
+    }
+
+    get liked(): boolean {
+        return this.iconCounterButtonElement.active;
+    }
+
+    set liked(value: boolean) {
+        this.iconCounterButtonElement.active = value;
     }
 }
 
