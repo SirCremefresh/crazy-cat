@@ -1,11 +1,9 @@
-<style>
-    /*noinspection CssUnusedSymbol*/
-    .liked {
-        fill: #06e900;
-    }
-</style>
-
-<button is="app-icon-button" data-js="like-button" aria-label="like Button" count="2" active-color="#666">
+<app-icon-counter-button
+        data-js="icon-counter-button"
+        aria-label="like Button"
+        active-color="#06e900"
+        active="false"
+>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
          width="20px" height="20px" viewBox="0 0 475.099 475.099"
          xml:space="preserve">
@@ -35,5 +33,5 @@
                 c-9.134,19.32-13.698,34.5-13.698,45.539h100.495c9.527,0,17.993,3.662,25.413,10.994c7.426,7.327,11.143,15.843,11.143,25.553
                 C420.284,225.943,418.237,233.653,414.145,242.419z"></path>
     </svg>
-</button>
+</app-icon-counter-button>
 

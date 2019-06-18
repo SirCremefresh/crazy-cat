@@ -3,15 +3,12 @@ import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
 import {getRandomNumber} from "../../util";
 import {getPath} from "../../router";
+import {LikeButtonComponent} from "../../components/like-button/like-button.component";
+import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 
 export class DetailPage extends HTMLElement {
-    likeAmount = getRandomNumber();
-    dislikeAmount = getRandomNumber();
-
-    likeAmountElement: HTMLElement;
-    dislikeAmountElement: HTMLElement;
-    likeButton: HTMLButtonElement;
-    dislikeButton: HTMLButtonElement;
+    likeButton: LikeButtonComponent;
+    dislikeButton: DislikeButtonComponent;
 
     descriptionElement: HTMLElement;
 
@@ -27,9 +24,6 @@ export class DetailPage extends HTMLElement {
         this.likeButton = this.shadowRoot.querySelector("[data-js=like-button]");
         this.dislikeButton = this.shadowRoot.querySelector("[data-js=dislike-button]");
 
-        this.likeAmountElement = this.shadowRoot.querySelector("[data-js=like-amount]");
-        this.dislikeAmountElement = this.shadowRoot.querySelector("[data-js=dislike-amount]");
-
         this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]")
     }
 
@@ -43,30 +37,24 @@ export class DetailPage extends HTMLElement {
             this.descriptionElement.textContent += " video"
         }
 
-        this.updateCounters()
+        this.likeButton.likes = getRandomNumber();
+        this.dislikeButton.dislikes = getRandomNumber();
+
+        this.likeButton.liked = false;
+        this.dislikeButton.disliked = false;
     }
 
     onLikeButtonChange(event: CustomEvent) {
-        if (event.detail) {
-            this.likeAmount++;
-        } else {
-            this.likeAmount--;
+        console.log("change");
+        if (this.likeButton.liked) {
+            this.dislikeButton.setStatus(false);
         }
-        this.updateCounters();
     }
 
     onDislikeButtonChange(event: CustomEvent) {
-        if (event.detail) {
-            this.dislikeAmount++;
-        } else {
-            this.dislikeAmount--;
+        if (this.dislikeButton.disliked) {
+            this.likeButton.setStatus(false);
         }
-        this.updateCounters();
-    }
-
-    updateCounters() {
-        this.likeAmountElement.textContent = this.likeAmount.toString();
-        this.dislikeAmountElement.textContent = this.dislikeAmount.toString();
     }
 
     disconnectedCallback() {

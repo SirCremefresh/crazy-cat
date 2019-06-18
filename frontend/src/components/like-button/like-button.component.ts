@@ -1,52 +1,54 @@
-import template from './like-button.component.html';
+import html from './like-button.component.html';
+import '../icon-counter-button/icon-counter-button.component'
+import {IconCounterButtonComponent} from "../icon-counter-button/icon-counter-button.component";
+
+const template = document.createElement('template');
+template.innerHTML = html;
 
 export class LikeButtonComponent extends HTMLElement {
-    liked = false;
-    likeCount: number;
-    likeButton: HTMLButtonElement;
-    likeIcon: SVGSVGElement;
-    likeAmountElement: HTMLElement;
+    private iconCounterButtonElement: IconCounterButtonComponent;
 
     constructor() {
         super();
 
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = template;
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        this.onLikeButtonClick = this.onLikeButtonClick.bind(this);
+        this.onChange = this.onChange.bind(this);
 
-        // this.likeButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=like-button]");
-        // this.likeIcon = this.likeButton.querySelector("svg");
-        // this.likeAmountElement = this.shadowRoot.querySelector("[data-js=like-amount]");
+        this.iconCounterButtonElement = <IconCounterButtonComponent>this.shadowRoot.querySelector("[data-js=icon-counter-button]");
     }
 
     connectedCallback() {
-        // this.likeCount = +this.getAttribute('like-count');
-        //
-        // this.likeButton.addEventListener('click', this.onLikeButtonClick);
-        //
-        // this.renderLikeAmount();
-    }
-
-    onLikeButtonClick() {
-        // this.liked = !this.liked;
-        // if (this.liked) {
-        //     this.likeCount++;
-        //     this.likeIcon.classList.add("liked");
-        // } else {
-        //     this.likeCount--;
-        //     this.likeIcon.classList.remove("liked");
-        // }
-        // this.dispatchEvent(new CustomEvent('change', {detail: {liked: this.liked, likeCount: this.likeCount}}));
-        // this.renderLikeAmount();
-    }
-
-    private renderLikeAmount() {
-        this.likeAmountElement.textContent = this.likeCount.toString();
+        this.iconCounterButtonElement.addEventListener('change', this.onChange);
     }
 
     public disconnectedCallback() {
-        this.likeButton.removeEventListener('click', this.onLikeButtonClick);
+        this.iconCounterButtonElement.removeEventListener('change', this.onChange);
+    }
+
+    onChange(e: CustomEvent) {
+        this.dispatchEvent(new CustomEvent('change', {detail: e.detail}));
+    }
+
+    setStatus(liked: boolean) {
+        this.iconCounterButtonElement.setStatus(liked);
+    }
+
+    get likes(): number {
+        return this.iconCounterButtonElement.count;
+    }
+
+    set likes(value: number) {
+        this.iconCounterButtonElement.count = value;
+    }
+
+    get liked(): boolean {
+        return this.iconCounterButtonElement.active;
+    }
+
+    set liked(value: boolean) {
+        this.iconCounterButtonElement.active = value;
     }
 }
 
