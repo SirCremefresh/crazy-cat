@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import {ObjectMetadata} from "firebase-functions/lib/providers/storage";
-import {Writable} from "stream";
 import * as path from "path";
 import * as os from "os";
 import * as fs from "fs";
@@ -23,7 +22,7 @@ exports.images = functions.https.onRequest(async (request: any, response: any) =
 });
 
 
-exports.generateResponsiveContent = functions.storage.object().onFinalize(async (file: ObjectMetadata) => {
+exports.generateResponsiveContent = functions.runWith({timeoutSeconds: 540}).storage.object().onFinalize(async (file: ObjectMetadata) => {
 
     console.log(`file: ${JSON.stringify(file)}`);
 
@@ -50,7 +49,7 @@ async function handleVideoConversion(file: ObjectMetadata, filePath: string) {
 // Once the thumbnail has been uploaded delete the local file to free up disk space.
 
     await Promise.all([
-        uploadInSize(tempFilePath, getWriteStream('s_' + filePath), 560),
+        uploadInSize(tempFilePath, 's_' + filePath, 560),
         // uploadInSize(remoteReadStream, getWriteStream('m_' + filePath), 960),
         // uploadInSize(remoteReadStream, getWriteStream('l_' + filePath), 1200)
     ]);
@@ -59,30 +58,31 @@ async function handleVideoConversion(file: ObjectMetadata, filePath: string) {
     return fs.unlinkSync(tempFilePath);
 }
 
-function getWriteStream(filePath: string) {
-    return bucket.file('transformed/' + filePath)
-        .createWriteStream({
-            metadata: {
-                contentType: 'video/mp4',
-            },
-        });
-}
 
 // ffmpeg -ss 00:00:10 -i philips_formula1.mkv -y -r 24 -s 1280x720 -c:v libx264 -b:v 2500k -c:a aac -b:a 128k
-function uploadInSize(readStream: string, writeStream: Writable, width: number) {
+function uploadInSize(filePath: string, uploadPath: string, width: number) {
+    const tempFilePath = path.join(os.tmpdir(), uploadPath);
+
     return new Promise((resolve, reject) => {
-        ffmpeg(readStream)
+        ffmpeg(filePath)
             .fps(24)
-            .audioCodec("aac")
-            .videoCodec("libx264")
+            .audioCodec("libvorbis")
+            .videoCodec("libvpx-vp9")
             .size(`${width}x?`).aspect('4:3').autopad('black')
-            .format('mp4')
+            .format('webm')
             // .outputOptions('-movflags +faststart')
             .on('start', (cmdLine: string) => {
                 console.log('Started ffmpeg with command:', cmdLine);
             })
-            .on('end', () => {
+            .on('end', async () => {
                 console.log('Successfully re-encoded video.');
+                await bucket.upload(tempFilePath, {
+                    destination: 'transformed/' + uploadPath,
+                    metadata: {
+                        contentType: 'video/mp4',
+                    },
+                });
+                fs.unlinkSync(tempFilePath);
                 resolve();
             })
             .on('error', (err: any, stdout: string, stderr: string) => {
@@ -91,6 +91,6 @@ function uploadInSize(readStream: string, writeStream: Writable, width: number) 
                 console.error('stderr:', stderr);
                 reject(err);
             })
-            .pipe(writeStream, {end: true});
+            .save(tempFilePath);
     })
 }
