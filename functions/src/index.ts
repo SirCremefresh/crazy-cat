@@ -2,6 +2,9 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import {ObjectMetadata} from "firebase-functions/lib/providers/storage";
 import {Readable, Writable} from "stream";
+import * as path from "path";
+import * as os from "os";
+import * as fs from "fs";
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
@@ -36,33 +39,47 @@ exports.generateResponsiveContent = functions.storage.object().onFinalize(async 
     if (file.contentType === 'video/mp4') {
         await handleVideoConversion(file, filePath);
     }
-
 });
 
 async function handleVideoConversion(file: ObjectMetadata, filePath: string) {
-    const remoteWriteStream = bucket.file('transformed/' + filePath)
-        .createWriteStream({
-            metadata: {
-                metadata: file.metadata, // You may not need this, my uploads have associated metadata
-                contentType: 'video/mp4', // This could be whatever else you are transcoding to
-            },
-        });
-
     const remoteReadStream = bucket.file(filePath).createReadStream();
 
-    await uploadInSize(remoteReadStream, remoteWriteStream);
+    const tempFilePath = path.join(os.tmpdir(), filePath);
+    await bucket.file(filePath).download({destination: tempFilePath});
+    console.log('Image downloaded locally to', tempFilePath);
+// Generate a thumbnail using ImageMagick.
+// Once the thumbnail has been uploaded delete the local file to free up disk space.
+
+    await Promise.all([
+        uploadInSize(remoteReadStream, getWriteStream('s_' + filePath), 560),
+        // uploadInSize(remoteReadStream, getWriteStream('m_' + filePath), 960),
+        // uploadInSize(remoteReadStream, getWriteStream('l_' + filePath), 1200)
+    ]);
+
+    
+    return fs.unlinkSync(tempFilePath);
 }
 
-function uploadInSize(readStream: Readable, writeStream: Writable) {
+function getWriteStream(filePath: string) {
+    return bucket.file('transformed/' + filePath)
+        .createWriteStream({
+            metadata: {
+                contentType: 'video/mp4',
+            },
+        });
+}
+
+// ffmpeg -ss 00:00:10 -i philips_formula1.mkv -y -r 24 -s 1280x720 -c:v libx264 -b:v 2500k -c:a aac -b:a 128k
+function uploadInSize(readStream: Readable, writeStream: Writable, width: number) {
     return new Promise((resolve, reject) => {
         ffmpeg()
             .input(readStream)
-            .outputOptions('-c:v copy')
-            .outputOptions('-c:a aac')
-            .outputOptions('-b:a 160k')
-            .outputOptions('-f mp4')
-            .outputOptions('-preset fast')
-            .outputOptions('-movflags frag_keyframe+empty_moov')
+            .fps(24)
+            .audioCodec("aac")
+            .videoCodec("libx264")
+            .size(`${width}x?`).aspect('4:3').autopad('black')
+            .format('mp4')
+            .outputOptions('-movflags +faststart')
             .on('start', (cmdLine: string) => {
                 console.log('Started ffmpeg with command:', cmdLine);
             })
