@@ -20,6 +20,17 @@ const firestore = admin.firestore();
 const bucket = admin.storage().bucket();
 
 exports.media = functions.https.onRequest(async (request: any, response: any) => {
+    response.set('Access-Control-Allow-Origin', '*');
+
+    if (request.method === 'OPTIONS') {
+        // Send response to OPTIONS requests
+        response.set('Access-Control-Allow-Methods', 'GET');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.set('Access-Control-Max-Age', '3600');
+        response.status(204).send('');
+        return;
+    }
+
     const snapshot = await firestore.collection('media').where('active', '==', true).get();
 
     const document = snapshot.docs.map((doc: any) => doc.data());
