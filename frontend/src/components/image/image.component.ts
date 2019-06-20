@@ -37,7 +37,7 @@ export class ImageComponent extends HTMLElement {
     async connectedCallback() {
         const id = this.getAttribute("id");
         this.medium = await mediaService.fetch(id);
-        this.imageElement.src = this.medium.fileUrls.s;
+        this.imageElement.src = this.medium.fileUrls.thumbnail;
         if (this.isVideo) {
             this.imageDescription.textContent += " video"
         } else {

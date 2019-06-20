@@ -3,7 +3,7 @@ export interface Medium {
     active: boolean;
     description: string;
     fileUrls: {
-        s: string, m: string, l: string
+        s: string, m: string, l: string,thumbnail: string
     }
     license: string
     likes: number
