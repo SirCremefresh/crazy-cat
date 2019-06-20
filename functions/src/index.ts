@@ -33,7 +33,12 @@ exports.media = functions.https.onRequest(async (request: any, response: any) =>
 
     const snapshot = await firestore.collection('media').where('active', '==', true).get();
 
-    const document = snapshot.docs.map((doc: any) => doc.data());
+    const document = snapshot.docs.map((doc: any) => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    });
     response.send(document);
 });
 
