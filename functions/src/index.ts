@@ -5,6 +5,8 @@ import * as path from "path";
 import * as os from "os";
 import * as fs from "fs";
 
+const spawn = require('child-process-promise').spawn;
+
 const uuidv4 = require('uuid/v4');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
@@ -45,10 +47,16 @@ exports.generateResponsiveContent = functions.runWith({
     let type: string;
 
     if (file.contentType === 'video/mp4') {
+        console.log("received video");
         type = 'video';
         fileUrls = await handleVideoConversion(tempFilePath);
-    } else {
+    } else if (file.contentType.startsWith("image")) {
+        console.log("received image");
         type = 'image';
+        fileUrls = await handleImageConversion(tempFilePath);
+    } else {
+        console.info("unsupported contentType: ", file.contentType);
+        return;
     }
 
 
@@ -64,13 +72,15 @@ exports.generateResponsiveContent = functions.runWith({
     });
 
     fs.unlinkSync(tempFilePath);
+    return;
 });
+
 
 async function handleVideoConversion(tempFilePath: string) {
     const [sUrl, mUrl, lUrl] = await Promise.all([
-        uploadInSize(tempFilePath, 560),
-        uploadInSize(tempFilePath, 960),
-        uploadInSize(tempFilePath, 1200)
+        uploadVideoInSize(tempFilePath, 560),
+        uploadVideoInSize(tempFilePath, 960),
+        uploadVideoInSize(tempFilePath, 1200)
     ]);
     return {
         s: sUrl,
@@ -79,8 +89,47 @@ async function handleVideoConversion(tempFilePath: string) {
     }
 }
 
+async function handleImageConversion(tempFilePath: string) {
+    const [sUrl, mUrl, lUrl] = await Promise.all([
+        uploadImageInSize(tempFilePath, 560),
+        uploadImageInSize(tempFilePath, 960),
+        uploadImageInSize(tempFilePath, 1200)
+    ]);
+    return {
+        s: sUrl,
+        m: mUrl,
+        l: lUrl
+    }
+}
 
-function uploadInSize(filePath: string, width: number) {
+async function uploadImageInSize(filePath: string, width: number) {
+    const height = width / 5 * 4;
+    const uploadPath = uuidv4() + '.png';
+    const tempFilePath = path.join(os.tmpdir(), uploadPath);
+
+    await spawn('convert', [filePath, `-resize`, `${height}x${width}`, `-background`, `black`, `-gravity`, `center`, `-extent`, `${height}x${width}`, tempFilePath]);
+
+    console.log('Thumbnail created at', tempFilePath);
+    const fullUploadPath = 'transformed/' + uploadPath;
+
+    await bucket.upload(tempFilePath, {
+        destination: fullUploadPath,
+        metadata: {
+            contentType: 'image/png',
+        },
+        resumable: false,
+        predefinedAcl: 'publicRead',
+    });
+    const file = await bucket.file(fullUploadPath);
+    const metaData = await file.getMetadata();
+    const url = metaData[0].mediaLink;
+    console.log(`url: ${url}`);
+    fs.unlinkSync(tempFilePath);
+    return url;
+}
+
+
+function uploadVideoInSize(filePath: string, width: number) {
     const uploadPath = uuidv4() + '.mp4';
     const tempFilePath = path.join(os.tmpdir(), uploadPath);
 
@@ -89,7 +138,7 @@ function uploadInSize(filePath: string, width: number) {
             .fps(24)
             .audioCodec("aac")
             .videoCodec("libx264")
-            .size(`${width}x?`).aspect('4:3').autopad('black')
+            .size(`${width}x?`).aspect('5:4').autopad('black')
             .format('mp4')
             .outputOptions('-movflags +faststart')
             .on('start', (cmdLine: string) => {
