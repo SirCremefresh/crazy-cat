@@ -1,9 +1,24 @@
 <style>
     :host {
         display: inline-block;
+        --card-border-radius: 5px;
     }
 
-    .description {
+    .card {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: var(--card-border-radius);
+        background: white;
+    }
+
+    .card-image img {
+        vertical-align: middle;
+        width: 100%;
+        height: auto;
+        border-top-left-radius: var(--card-border-radius);
+        border-top-right-radius: var(--card-border-radius);
+    }
+
+    .card-description {
         height: 48px;
         display: flex;
         align-items: center;
@@ -11,25 +26,21 @@
 
     .image-description {
         flex-grow: 1;
-    }
-
-    .image {
-        vertical-align: middle;
-        width: 100%;
-        height: auto;
+        margin-left: 8px;
     }
 </style>
 
-<a is="app-link" data-js="detail-link">
-    <div class="image-container">
-        <img data-js="image" class="image" src="../../assets/dummy.png" alt="this is a dummy image"/>
+<div class="card">
+    <div class="card-image">
+        <a is="app-link" data-js="detail-link">
+            <img data-js="image"  src="https://images.pexels.com/photos/259803/pexels-photo-259803.jpeg?cs=srgb&dl=adorable-animal-animal-photography-259803.jpg&fm=jpg" alt="Cat image"/>
+        </a>
     </div>
-</a>
+    <div class="card-description">
+        <span class="image-description" data-js="image-description">
+            this is an
+        </span>
+        <app-like-button data-js="like-button"></app-like-button>
+    </div>
 
-<div class="description">
-    <span class="image-description" data-js="image-description">
-        this is an
-    </span>
-    <app-like-button data-js="like-button"></app-like-button>
 </div>
-

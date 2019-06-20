@@ -8,7 +8,7 @@ class StyleService {
     private static readonly LOCAL_STORAGE_KEY = "CURRENT_THEME";
     private options: { [key in StyleKeys]: StyleOptions } = {
         Default: {
-            headerBackground: '#26547C'
+            headerBackground: '#416AA6'
         },
         Pride: {
             headerBackground: 'linear-gradient(\n' +
@@ -51,6 +51,7 @@ class StyleService {
 
     public observable = new Observable<StyleOptions>()
 }
+
 
 
 export const styleService = new StyleService();

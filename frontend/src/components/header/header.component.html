@@ -1,7 +1,7 @@
 <style>
     :host {
         display: block;
-        background-color: gray;
+        height: 54px;
     }
 
     header {
@@ -9,6 +9,10 @@
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
         grid-template-areas: "navigation-button logo" "nav nav";
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        position: fixed;
+        top: 0;
+        width: 100%;
     }
 
     nav {
@@ -33,15 +37,31 @@
     .navigation-button {
         grid-area: navigation-button;
         width: 48px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #FFD166;
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 20px;
     }
 
     .logo {
         grid-area: logo;
-        height: 60px;
-        padding: 10px;
+        height: 40px;
+        padding-top: 7px;
+        padding-left: 10px;
+    }
+
+    .links a, .settings {
+        padding-left: 10px;
+        padding-top: 10px;
+        font-size: 1.3em;
+    }
+
+    .links a:hover, .settings:hover {
+        text-decoration: underline;
+    }
+
+    .settings {
+        padding-bottom: 10px;
     }
 
     @media (min-width: 600px) {
@@ -64,7 +84,7 @@
         .links {
             flex-grow: 1;
             display: inline-block;
-            font-size: 2em;
+            font-size: 1.8em;
         }
 
         .links a:first-child {
@@ -95,7 +115,13 @@
             display: none;
         }
     }
+
+    .top-push-element {
+        height: 54px;
+    }
 </style>
+
+<div class="top-push-element"></div>
 
 <header data-js="header">
     <button class="navigation-button" data-js="navigation-button">
