@@ -1,4 +1,5 @@
-export interface Media {
+export interface Medium {
+    id: string;
     active: boolean;
     description: string;
     fileUrls: {
@@ -11,12 +12,19 @@ export interface Media {
 }
 
 class MediaService {
-    private mediaCache: Media[] = null;
+    private mediaCache: Medium[] = null;
 
-    async fetchAll(): Promise<Media[]> {
+    async fetchAll(): Promise<Medium[]> {
         if (this.mediaCache === null)
-            this.mediaCache = await fetch("https://us-central1-crazy-cat-josodo.cloudfunctions.net/media").then<Media[]>(e => e.json());
+            this.mediaCache = await fetch("https://us-central1-crazy-cat-josodo.cloudfunctions.net/media").then<Medium[]>(e => e.json());
         return this.mediaCache;
+    }
+
+    async fetch(id: string) {
+        if (this.mediaCache === null) {
+            throw new Error("not implemented lazy loading");
+        }
+        return this.mediaCache.find((medium) => medium.id === id);
     }
 }
 

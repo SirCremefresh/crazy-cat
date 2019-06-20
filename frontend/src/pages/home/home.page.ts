@@ -21,7 +21,9 @@ export class HomePage extends HTMLElement {
 
         const imageComponents = [];
         for (const medium of media) {
-            imageComponents.push(document.createElement('app-image'));
+            const appImage = document.createElement('app-image');
+            appImage.setAttribute("id", medium.id);
+            imageComponents.push(appImage);
         }
 
         this.imagesContainer.removeChild(this.imagesContainer.firstChild);
