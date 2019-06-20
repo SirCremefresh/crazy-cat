@@ -1,9 +1,9 @@
 import '../../components/image/image.component';
 import template from './home.page.html';
+import {mediaService} from "../../api/media.service";
 
 export class HomePage extends HTMLElement {
     private imagesContainer: HTMLElement;
-    private imageComponents = [];
 
     constructor() {
         super();
@@ -13,12 +13,22 @@ export class HomePage extends HTMLElement {
 
         this.imagesContainer = this.shadowRoot.querySelector('[data-js=images]');
 
-        for (let i = 0; i < 20; i++) {
-            this.imageComponents.push(document.createElement('app-image'));
+
+    }
+
+    async connectedCallback() {
+        const media = await mediaService.fetchAll();
+
+        const imageComponents = [];
+        for (const medium of media) {
+            imageComponents.push(document.createElement('app-image'));
         }
 
-        this.imagesContainer.append(...this.imageComponents);
+        this.imagesContainer.removeChild(this.imagesContainer.firstChild);
+        this.imagesContainer.append(...imageComponents);
+        console.log(media);
     }
+
 }
 
 
