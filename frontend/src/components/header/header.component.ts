@@ -14,6 +14,7 @@ export class HeaderComponent extends HTMLElement {
         this.shadowRoot.innerHTML = template;
 
         this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
+        this.updateBackgroundColor = this.updateBackgroundColor.bind(this);
 
         this.menuButton = <HTMLButtonElement>this.shadowRoot.querySelector("[data-js=navigation-button]");
         this.navigation = <HTMLElement>this.shadowRoot.querySelector("[data-js=navigation]");
@@ -25,6 +26,7 @@ export class HeaderComponent extends HTMLElement {
 
         this.setNavAttribute();
         this.updateBackgroundColor();
+        styleService.observable.subscribe(this.updateBackgroundColor)
     }
 
     private onMenuButtonClick() {
@@ -42,6 +44,7 @@ export class HeaderComponent extends HTMLElement {
 
     public disconnectedCallback() {
         this.menuButton.removeEventListener('click', this.onMenuButtonClick);
+        styleService.observable.unsubscribe(this.updateBackgroundColor)
     }
 }
 
