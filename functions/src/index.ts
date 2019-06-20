@@ -5,8 +5,10 @@ import * as path from "path";
 import * as os from "os";
 import * as fs from "fs";
 
+const uuidv4 = require('uuid/v4');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
+
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
@@ -22,10 +24,10 @@ exports.images = functions.https.onRequest(async (request: any, response: any) =
 });
 
 
-exports.generateResponsiveContent = functions.runWith({timeoutSeconds: 540}).storage.object().onFinalize(async (file: ObjectMetadata) => {
-
-    console.log(`file: ${JSON.stringify(file)}`);
-
+exports.generateResponsiveContent = functions.runWith({
+    timeoutSeconds: 540,
+    memory: '1GB'
+}).storage.object().onFinalize(async (file: ObjectMetadata) => {
     if (!file.name) {
         console.error(`filePath is undefined. file: ${JSON.stringify(file)}`)
     }
@@ -35,42 +37,54 @@ exports.generateResponsiveContent = functions.runWith({timeoutSeconds: 540}).sto
         return;
     }
 
-    if (file.contentType === 'video/mp4') {
-        await handleVideoConversion(file, filePath);
-    }
-});
-
-async function handleVideoConversion(file: ObjectMetadata, filePath: string) {
-
     const tempFilePath = path.join(os.tmpdir(), filePath);
     await bucket.file(filePath).download({destination: tempFilePath});
-    console.log('Image downloaded locally to', tempFilePath);
-// Generate a thumbnail using ImageMagick.
-// Once the thumbnail has been uploaded delete the local file to free up disk space.
 
+    const fileNames = {
+        s: uuidv4() + '.mp4',
+        m: uuidv4() + '.mp4',
+        l: uuidv4() + '.mp4',
+    };
+
+    let type: string;
+
+    if (file.contentType === 'video/mp4') {
+        type = 'video';
+        await handleVideoConversion(tempFilePath, fileNames);
+    } else {
+        type = 'image';
+    }
+
+    firestore.collection('media').doc().set({
+        type,
+        fileNames,
+        likes: 0,
+        license: ''
+    });
+
+    fs.unlinkSync(tempFilePath);
+});
+
+async function handleVideoConversion(tempFilePath: string, filenames: { s: string, m: string, l: string }) {
     await Promise.all([
-        uploadInSize(tempFilePath, 's_' + filePath, 560),
-        // uploadInSize(remoteReadStream, getWriteStream('m_' + filePath), 960),
-        // uploadInSize(remoteReadStream, getWriteStream('l_' + filePath), 1200)
+        uploadInSize(tempFilePath, filenames.s, 560),
+        uploadInSize(tempFilePath, filenames.m, 960),
+        uploadInSize(tempFilePath, filenames.l, 1200)
     ]);
-
-
-    return fs.unlinkSync(tempFilePath);
 }
 
 
-// ffmpeg -ss 00:00:10 -i philips_formula1.mkv -y -r 24 -s 1280x720 -c:v libx264 -b:v 2500k -c:a aac -b:a 128k
 function uploadInSize(filePath: string, uploadPath: string, width: number) {
     const tempFilePath = path.join(os.tmpdir(), uploadPath);
 
     return new Promise((resolve, reject) => {
         ffmpeg(filePath)
             .fps(24)
-            .audioCodec("libvorbis")
-            .videoCodec("libvpx-vp9")
+            .audioCodec("aac")
+            .videoCodec("libx264")
             .size(`${width}x?`).aspect('4:3').autopad('black')
-            .format('webm')
-            // .outputOptions('-movflags +faststart')
+            .format('mp4')
+            .outputOptions('-movflags +faststart')
             .on('start', (cmdLine: string) => {
                 console.log('Started ffmpeg with command:', cmdLine);
             })
@@ -81,6 +95,7 @@ function uploadInSize(filePath: string, uploadPath: string, width: number) {
                     metadata: {
                         contentType: 'video/mp4',
                     },
+                    resumable: false
                 });
                 fs.unlinkSync(tempFilePath);
                 resolve();
