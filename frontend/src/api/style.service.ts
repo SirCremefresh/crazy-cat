@@ -5,6 +5,7 @@ type StyleKeys = "Default" | "Pride"
 type StyleOptions = { headerBackground: string };
 
 class StyleService {
+    private static readonly LOCAL_STORAGE_KEY = "CURRENT_THEME";
     private options: { [key in StyleKeys]: StyleOptions } = {
         Default: {
             headerBackground: '#416AA6'
@@ -27,6 +28,15 @@ class StyleService {
         }
     };
 
+    constructor() {
+        const localstorageKey = <StyleKeys>localStorage.getItem(StyleService.LOCAL_STORAGE_KEY);
+        if (localstorageKey === null) {
+            return;
+        } else {
+            this.setCurrentKey(localstorageKey)
+        }
+    }
+
     private currentKey: StyleKeys = "Default";
 
     get currentOption() {
@@ -34,6 +44,7 @@ class StyleService {
     }
 
     setCurrentKey(currentKey: StyleKeys) {
+        localStorage.setItem(StyleService.LOCAL_STORAGE_KEY, currentKey);
         this.currentKey = currentKey;
         this.observable.emit(this.currentOption);
     }
@@ -42,4 +53,5 @@ class StyleService {
 }
 
 
-export default new StyleService();
+
+export const styleService = new StyleService();

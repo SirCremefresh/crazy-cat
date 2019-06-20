@@ -1,5 +1,5 @@
 import template from './header.component.html';
-import styleService from '../../api/style.service'
+import {styleService} from "../../api/style.service";
 
 export class HeaderComponent extends HTMLElement {
     isMenuOpen = false;

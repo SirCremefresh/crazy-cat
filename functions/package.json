@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.18",
+    "child-process-promise": "^2.2.1",
+    "ffprobe-static": "^3.0.0",
     "firebase-admin": "~8.1.0",
     "firebase-functions": "^3.0.1",
     "fluent-ffmpeg": "^2.1.2",
