@@ -42,4 +42,4 @@ class StyleService {
 }
 
 
-export default new StyleService();
+export const styleService = new StyleService();
