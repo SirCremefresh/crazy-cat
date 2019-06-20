@@ -58,7 +58,8 @@ exports.generateResponsiveContent = functions.runWith({
         type,
         fileUrls,
         likes: 0,
-        license: ''
+        license: '',
+        description: ''
     });
 
     fs.unlinkSync(tempFilePath);
