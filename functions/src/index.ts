@@ -40,24 +40,23 @@ exports.generateResponsiveContent = functions.runWith({
     const tempFilePath = path.join(os.tmpdir(), filePath);
     await bucket.file(filePath).download({destination: tempFilePath});
 
-    const fileNames = {
-        s: uuidv4() + '.mp4',
-        m: uuidv4() + '.mp4',
-        l: uuidv4() + '.mp4',
-    };
-
+    let fileUrls;
     let type: string;
 
     if (file.contentType === 'video/mp4') {
         type = 'video';
-        await handleVideoConversion(tempFilePath, fileNames);
+        fileUrls = await handleVideoConversion(tempFilePath);
     } else {
         type = 'image';
     }
 
+
+    console.log('saving media information to firestore');
     firestore.collection('media').doc().set({
+        active: false,
+        name: filePath,
         type,
-        fileNames,
+        fileUrls,
         likes: 0,
         license: ''
     });
@@ -65,16 +64,22 @@ exports.generateResponsiveContent = functions.runWith({
     fs.unlinkSync(tempFilePath);
 });
 
-async function handleVideoConversion(tempFilePath: string, filenames: { s: string, m: string, l: string }) {
-    await Promise.all([
-        uploadInSize(tempFilePath, filenames.s, 560),
-        uploadInSize(tempFilePath, filenames.m, 960),
-        uploadInSize(tempFilePath, filenames.l, 1200)
+async function handleVideoConversion(tempFilePath: string) {
+    const [sUrl, mUrl, lUrl] = await Promise.all([
+        uploadInSize(tempFilePath, 560),
+        uploadInSize(tempFilePath, 960),
+        uploadInSize(tempFilePath, 1200)
     ]);
+    return {
+        s: sUrl,
+        m: mUrl,
+        l: lUrl
+    }
 }
 
 
-function uploadInSize(filePath: string, uploadPath: string, width: number) {
+function uploadInSize(filePath: string, width: number) {
+    const uploadPath = uuidv4() + '.mp4';
     const tempFilePath = path.join(os.tmpdir(), uploadPath);
 
     return new Promise((resolve, reject) => {
@@ -90,15 +95,21 @@ function uploadInSize(filePath: string, uploadPath: string, width: number) {
             })
             .on('end', async () => {
                 console.log('Successfully re-encoded video.');
+                const fullUploadPath = 'transformed/' + uploadPath;
                 await bucket.upload(tempFilePath, {
-                    destination: 'transformed/' + uploadPath,
+                    destination: fullUploadPath,
                     metadata: {
                         contentType: 'video/mp4',
                     },
-                    resumable: false
+                    resumable: false,
+                    predefinedAcl: 'publicRead',
                 });
                 fs.unlinkSync(tempFilePath);
-                resolve();
+                const file = await bucket.file(fullUploadPath);
+                const metaData = await file.getMetadata();
+                const url = metaData[0].mediaLink;
+                console.log(`url: ${url}`);
+                resolve(url);
             })
             .on('error', (err: any, stdout: string, stderr: string) => {
                 console.error('An error occured during encoding', err.message);
