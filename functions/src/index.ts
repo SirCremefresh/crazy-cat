@@ -9,10 +9,11 @@ const spawn = require('child-process-promise').spawn;
 
 const uuidv4 = require('uuid/v4');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffprobePath = require('ffprobe-static').path;
 const ffmpeg = require('fluent-ffmpeg');
 
-
 ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfprobePath(ffprobePath);
 
 admin.initializeApp(functions.config().firebase);
 
@@ -93,33 +94,42 @@ exports.generateResponsiveContent = functions.runWith({
 
 
 async function handleVideoConversion(tempFilePath: string) {
-    const [sUrl, mUrl, lUrl] = await Promise.all([
+    const [sUrl, mUrl, lUrl, thumbnailPath] = await Promise.all([
         uploadVideoInSize(tempFilePath, 560),
         uploadVideoInSize(tempFilePath, 960),
-        uploadVideoInSize(tempFilePath, 1200)
+        uploadVideoInSize(tempFilePath, 1200),
+        makeScrennShotOfVideo(tempFilePath)
     ]);
+
+    const thumbnailUrl = await uploadImageInSize(thumbnailPath, 250);
+
+    fs.unlinkSync(thumbnailPath);
+
     return {
         s: sUrl,
         m: mUrl,
-        l: lUrl
+        l: lUrl,
+        thumbnail: thumbnailUrl
     }
 }
 
 async function handleImageConversion(tempFilePath: string) {
-    const [sUrl, mUrl, lUrl] = await Promise.all([
+    const [sUrl, mUrl, lUrl, thumbnailUrl] = await Promise.all([
         uploadImageInSize(tempFilePath, 560),
         uploadImageInSize(tempFilePath, 960),
-        uploadImageInSize(tempFilePath, 1200)
+        uploadImageInSize(tempFilePath, 1200),
+        uploadImageInSize(tempFilePath, 250)
     ]);
     return {
         s: sUrl,
         m: mUrl,
-        l: lUrl
+        l: lUrl,
+        thumbnail: thumbnailUrl
     }
 }
 
 async function uploadImageInSize(filePath: string, width: number) {
-    const height = width / 5 * 4;
+    const height = width / 4 * 5;
     const uploadPath = uuidv4() + '.png';
     const tempFilePath = path.join(os.tmpdir(), uploadPath);
 
@@ -186,4 +196,34 @@ function uploadVideoInSize(filePath: string, width: number) {
             })
             .save(tempFilePath);
     })
+}
+
+
+function makeScrennShotOfVideo(filePath: string): Promise<string> {
+    const outFolder = os.tmpdir();
+    let fileName: string;
+    return new Promise((resolve, reject) => {
+        ffmpeg(filePath)
+            .screenshots({
+                timestamps: ['1%'],
+                filename: uuidv4() + '.png',
+                folder: outFolder,
+            })
+            .on('filenames', function (filenames: string[]) {
+                fileName = filenames[0];
+            })
+            .on('start', (cmdLine: string) => {
+                console.log('Started ffmpeg with command:', cmdLine);
+            })
+            .on('end', async () => {
+                console.log('Successfully taken screenshot video.');
+                resolve(path.join(outFolder, fileName));
+            })
+            .on('error', (err: any, stdout: string, stderr: string) => {
+                console.error('An error occured during taking a screenshot', err.message);
+                console.error('stdout:', stdout);
+                console.error('stderr:', stderr);
+                reject(err);
+            })
+    });
 }
