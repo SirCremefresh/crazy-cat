@@ -7,7 +7,7 @@ type StyleOptions = { headerBackground: string };
 class StyleService {
     private options: { [key in StyleKeys]: StyleOptions } = {
         Default: {
-            headerBackground: 'green'
+            headerBackground: '#26547C'
         },
         Pride: {
             headerBackground: 'linear-gradient(\n' +
