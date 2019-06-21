@@ -30,8 +30,8 @@ export class DislikeButtonComponent extends HTMLElement {
         this.dispatchEvent(new CustomEvent('change', {detail: e.detail}));
     }
 
-    setStatus(disliked: boolean) {
-        this.iconCounterButtonElement.setStatus(disliked);
+    setStatus(disliked: boolean): boolean {
+        return this.iconCounterButtonElement.setStatus(disliked);
     }
 
     get dislikes(): number {

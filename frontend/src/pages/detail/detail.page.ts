@@ -54,15 +54,25 @@ export class DetailPage extends HTMLElement {
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);
     }
 
-    onLikeButtonChange(event: CustomEvent) {
+    async onLikeButtonChange(event: CustomEvent) {
         if (this.likeButton.liked) {
-            this.dislikeButton.setStatus(false);
+            if (this.dislikeButton.setStatus(false)) {
+                await mediaService.undislike(this.medium.id);
+            }
+            await mediaService.like(this.medium.id);
+        } else {
+            await mediaService.unlike(this.medium.id);
         }
     }
 
-    onDislikeButtonChange(event: CustomEvent) {
+    async onDislikeButtonChange(event: CustomEvent) {
         if (this.dislikeButton.disliked) {
-            this.likeButton.setStatus(false);
+            if (this.likeButton.setStatus(false)) {
+                await mediaService.unlike(this.medium.id);
+            }
+            await mediaService.dislike(this.medium.id);
+        } else {
+            await mediaService.undislike(this.medium.id);
         }
     }
 
