@@ -23,12 +23,16 @@ export function initRouter(options: {
 }
 
 export async function navigateTo(path: string) {
+    silentNavigateTo(path);
+    return await updateRoute();
+}
+
+export function silentNavigateTo(path: string) {
     if (path === getDecodedURI()) {
         return;
     }
 
     history.pushState({}, path, path);
-    return await updateRoute();
 }
 
 function trimSlashes(path: string) {

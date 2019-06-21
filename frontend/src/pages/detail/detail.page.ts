@@ -1,7 +1,7 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
-import {getVariable} from "../../router";
+import {getVariable, navigateTo, silentNavigateTo} from "../../router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 import {mediaService, Medium} from "../../api/media.service";
@@ -17,6 +17,7 @@ export class DetailPage extends HTMLElement {
     videoElement: HTMLVideoElement;
     ratingElement: HTMLElement;
     backButton: SVGElement;
+    licenseElement: HTMLElement;
 
     constructor() {
         super();
@@ -33,6 +34,8 @@ export class DetailPage extends HTMLElement {
         this.imageElement = this.shadowRoot.querySelector("[data-js=image]");
         this.videoElement = this.shadowRoot.querySelector("[data-js=video]");
 
+        this.licenseElement = this.shadowRoot.querySelector("[data-js=license]");
+
         this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
         this.ratingElement = this.shadowRoot.querySelector('[data-js=rating');
         this.backButton = this.shadowRoot.querySelector('[data-js=back-button');
@@ -41,9 +44,20 @@ export class DetailPage extends HTMLElement {
     }
 
     async connectedCallback() {
-        const id = getVariable();
-        this.medium = await mediaService.fetch(id);
+        {
+            const id = getVariable();
 
+            if (id === "cat-of-the-month") {
+                this.medium = await mediaService.fetchCatOfTheMonth();
+                silentNavigateTo(this.medium.id);
+            } else {
+                this.medium = await mediaService.fetch(id);
+                if (this.medium === undefined) {
+                    navigateTo('/');
+                    return;
+                }
+            }
+        }
 
         this.descriptionElement.textContent = this.medium.description;
 
@@ -51,6 +65,8 @@ export class DetailPage extends HTMLElement {
         this.dislikeButton.dislikes = this.medium.dislikes;
         this.likeButton.liked = this.medium.liked;
         this.dislikeButton.disliked = this.medium.disliked;
+
+        this.licenseElement.textContent = this.medium.license;
 
         if (this.medium.type === "image") {
             this.imageElement.srcset = `
