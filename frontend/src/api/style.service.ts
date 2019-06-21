@@ -2,7 +2,7 @@ import {Observable} from "../util/observer";
 
 type StyleKeys = "Default" | "Dark" | "Pride"
 
-type StyleOptions = { headerBackground: string, siteBackground: string, fontColor: string };
+type StyleOptions = { headerBackground: string, siteBackground: string, fontColor: string, linkFontColor: string };
 
 class StyleService {
     private static readonly LOCAL_STORAGE_KEY = "CURRENT_THEME";
@@ -10,12 +10,14 @@ class StyleService {
         Default: {
             headerBackground: '#26547C',
             siteBackground: '#FFF',
-            fontColor: '#000'
+            fontColor: '#000',
+            linkFontColor: ''
         },
         Dark: {
             headerBackground: '#26547C',
             siteBackground: '#2E2E2E',
-            fontColor: '#FFF'
+            fontColor: '#FFF',
+            linkFontColor: '#06D6A0'
         },
         Pride: {
             headerBackground: 'linear-gradient(\n' +
@@ -33,7 +35,8 @@ class StyleService {
                 '    #675997 100%\n' +
                 '  )',
                 siteBackground: '#FFF',
-                fontColor: '#000'
+                fontColor: '#000',
+                linkFontColor: ''
         }
     };
 

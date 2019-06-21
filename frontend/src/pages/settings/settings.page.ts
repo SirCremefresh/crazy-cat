@@ -8,6 +8,8 @@ export class HomePage extends HTMLElement {
     prideSwitch: SwitchComponent;
     darkSwitch: SwitchComponent;
 
+    links: any;
+
     constructor() {
         super();
 
@@ -19,11 +21,17 @@ export class HomePage extends HTMLElement {
 
         this.togglePrideMode = this.togglePrideMode.bind(this);
         this.toggleDarkMode = this.toggleDarkMode.bind(this);
+
+        this.links = this.shadowRoot.querySelectorAll('a');
+        this.updateColors = this.updateColors.bind(this);
     }
 
     connectedCallback() {
         this.prideSwitch.addEventListener('click', this.togglePrideMode);
         this.darkSwitch.addEventListener('click', this.toggleDarkMode);
+
+        this.updateColors();
+        styleService.observable.subscribe(this.updateColors);
     }
 
     togglePrideMode() {
@@ -39,8 +47,13 @@ export class HomePage extends HTMLElement {
             styleService.setCurrentKey("Dark");
         } else {
             styleService.setCurrentKey("Default");
-        }
-        
+        }  
+    }
+
+    updateColors() {
+        this.links.forEach((e)=> {
+            e.style.color = styleService.currentOption.linkFontColor;
+        })
     }
 }
 
