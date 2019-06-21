@@ -43,13 +43,13 @@ class MediaService {
 
     async dislike(id: string) {
         const medium = await this.fetch(id);
-        medium.likes++;
+        medium.dislikes++;
         await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/dislike?id=${id}`)
     }
 
     async undislike(id: string) {
         const medium = await this.fetch(id);
-        medium.likes--;
+        medium.dislikes--;
         await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/undislike?id=${id}`)
     }
 }
