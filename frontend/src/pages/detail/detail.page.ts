@@ -1,7 +1,7 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
-import {getVariable, silentNavigateTo} from "../../router";
+import {getVariable, navigateTo, silentNavigateTo} from "../../router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 import {mediaService, Medium} from "../../api/media.service";
@@ -52,6 +52,10 @@ export class DetailPage extends HTMLElement {
                 silentNavigateTo(this.medium.id);
             } else {
                 this.medium = await mediaService.fetch(id);
+                if (this.medium === undefined) {
+                    navigateTo('/');
+                    return;
+                }
             }
         }
 
