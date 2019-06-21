@@ -3,7 +3,7 @@ export interface Medium {
     active: boolean;
     description: string;
     fileUrls: {
-        s: string, m: string, l: string,thumbnail: string
+        s: string, m: string, l: string, thumbnail: string
     }
     license: string
     likes: number
@@ -16,13 +16,14 @@ class MediaService {
 
     async fetchAll(): Promise<Medium[]> {
         if (this.mediaCache === null)
-            this.mediaCache = await fetch("https://us-central1-crazy-cat-josodo.cloudfunctions.net/media").then<Medium[]>(e => e.json());
+            this.mediaCache = await fetch("https://europe-west1-crazy-cat-josodo.cloudfunctions.net/media").then<Medium[]>(e => e.json());
         return this.mediaCache;
     }
 
     async fetch(id: string) {
         if (this.mediaCache === null) {
-            throw new Error("not implemented lazy loading");
+            await this.fetchAll();
+            console.error("not implemented lazy loading");
         }
         return this.mediaCache.find((medium) => medium.id === id);
     }

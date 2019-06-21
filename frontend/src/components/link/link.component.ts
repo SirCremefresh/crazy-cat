@@ -5,6 +5,10 @@ export class LinkComponent extends HTMLAnchorElement {
         this.addEventListener('click', e => {
             e.preventDefault();
 
+            if (this.pathname === '.') {
+                return;
+            }
+
             navigateTo(this.pathname);
         });
     }
