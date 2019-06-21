@@ -22,6 +22,8 @@ export class ImageComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(templateNode.cloneNode(true));
 
+        this.onLikeButtonChange = this.onLikeButtonChange.bind(this);
+
         this.likeButton = <LikeButtonComponent>this.shadowRoot.querySelector("[data-js=like-button]");
 
         this.detailLink = <LinkComponent>this.shadowRoot.querySelector("[data-js=detail-link]");
@@ -39,6 +41,21 @@ export class ImageComponent extends HTMLElement {
         this.imageDescription.textContent = this.medium.description;
 
         this.likeButton.likes = this.medium.likes;
+        this.likeButton.liked = this.medium.liked;
+
+        this.likeButton.addEventListener('change', this.onLikeButtonChange);
+    }
+
+    async onLikeButtonChange(event: CustomEvent) {
+        if (this.likeButton.liked) {
+            await mediaService.like(this.medium.id);
+        } else {
+            await mediaService.unlike(this.medium.id);
+        }
+    }
+
+    disconnectedCallback() {
+        this.likeButton.removeEventListener('change', this.onLikeButtonChange);
     }
 }
 

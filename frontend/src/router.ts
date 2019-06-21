@@ -44,6 +44,11 @@ export function getPath(): string {
     return trimSlashes(path);
 }
 
+export function getVariable(): string {
+    const path = getPath();
+    return path.slice(path.lastIndexOf("/") + 1)
+}
+
 function findRoute(): Route {
     const path = getPath();
     const shortPath = path.slice(0, path.lastIndexOf('/'));

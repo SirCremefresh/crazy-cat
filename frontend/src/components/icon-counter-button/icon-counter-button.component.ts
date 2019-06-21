@@ -41,13 +41,16 @@ export class IconCounterButtonComponent extends HTMLElement {
         ));
     }
 
-    setStatus(active: boolean) {
+    setStatus(active: boolean): boolean {
         if (this.active !== active) {
             this.active = !this.active;
             this.count += (this.active) ? 1 : -1;
 
             this.render();
+
+            return true;
         }
+        return false;
     }
 
     private render() {

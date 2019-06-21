@@ -31,8 +31,8 @@ export class LikeButtonComponent extends HTMLElement {
         this.dispatchEvent(new CustomEvent('change', {detail: e.detail}));
     }
 
-    setStatus(liked: boolean) {
-        this.iconCounterButtonElement.setStatus(liked);
+    setStatus(liked: boolean): boolean {
+        return this.iconCounterButtonElement.setStatus(liked);
     }
 
     get likes(): number {

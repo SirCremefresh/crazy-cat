@@ -1,16 +1,18 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
-import {getRandomNumber} from "../../util";
-import {getPath} from "../../router";
+import {getVariable} from "../../router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
+import {mediaService, Medium} from "../../api/media.service";
 
 export class DetailPage extends HTMLElement {
+    medium: Medium;
     likeButton: LikeButtonComponent;
     dislikeButton: DislikeButtonComponent;
 
     descriptionElement: HTMLElement;
+    imageElement: HTMLImageElement;
 
     constructor() {
         super();
@@ -24,36 +26,53 @@ export class DetailPage extends HTMLElement {
         this.likeButton = this.shadowRoot.querySelector("[data-js=like-button]");
         this.dislikeButton = this.shadowRoot.querySelector("[data-js=dislike-button]");
 
-        this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]")
+        this.imageElement = this.shadowRoot.querySelector("[data-js=image]");
+
+        this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        const id = getVariable();
+        this.medium = await mediaService.fetch(id);
+
+
+        this.descriptionElement.textContent = this.medium.description;
+
+        this.likeButton.likes = this.medium.likes;
+        this.dislikeButton.dislikes = this.medium.dislikes;
+
+        this.imageElement.srcset = `
+            ${this.medium.fileUrls.s} 560w,
+            ${this.medium.fileUrls.m} 960w,
+            ${this.medium.fileUrls.l} 1200w
+        `;
+
+        this.likeButton.liked = this.medium.liked;
+        this.dislikeButton.disliked = this.medium.disliked;
+
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);
-
-        if (getPath().indexOf("video") === -1) {
-            this.descriptionElement.textContent += " image"
-        } else {
-            this.descriptionElement.textContent += " video"
-        }
-
-        this.likeButton.likes = getRandomNumber();
-        this.dislikeButton.dislikes = getRandomNumber();
-
-        this.likeButton.liked = false;
-        this.dislikeButton.disliked = false;
     }
 
-    onLikeButtonChange(event: CustomEvent) {
-        console.log("change");
+    async onLikeButtonChange(event: CustomEvent) {
         if (this.likeButton.liked) {
-            this.dislikeButton.setStatus(false);
+            if (this.dislikeButton.setStatus(false)) {
+                await mediaService.undislike(this.medium.id);
+            }
+            await mediaService.like(this.medium.id);
+        } else {
+            await mediaService.unlike(this.medium.id);
         }
     }
 
-    onDislikeButtonChange(event: CustomEvent) {
+    async onDislikeButtonChange(event: CustomEvent) {
         if (this.dislikeButton.disliked) {
-            this.likeButton.setStatus(false);
+            if (this.likeButton.setStatus(false)) {
+                await mediaService.unlike(this.medium.id);
+            }
+            await mediaService.dislike(this.medium.id);
+        } else {
+            await mediaService.undislike(this.medium.id);
         }
     }
 
