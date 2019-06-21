@@ -17,6 +17,7 @@ export class DetailPage extends HTMLElement {
     videoElement: HTMLVideoElement;
     ratingElement: HTMLElement;
     backButton: SVGElement;
+    licenseElement: HTMLElement;
 
     constructor() {
         super();
@@ -32,6 +33,8 @@ export class DetailPage extends HTMLElement {
 
         this.imageElement = this.shadowRoot.querySelector("[data-js=image]");
         this.videoElement = this.shadowRoot.querySelector("[data-js=video]");
+
+        this.licenseElement = this.shadowRoot.querySelector("[data-js=license]");
 
         this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
         this.ratingElement = this.shadowRoot.querySelector('[data-js=rating');
@@ -58,6 +61,8 @@ export class DetailPage extends HTMLElement {
         this.dislikeButton.dislikes = this.medium.dislikes;
         this.likeButton.liked = this.medium.liked;
         this.dislikeButton.disliked = this.medium.disliked;
+
+        this.licenseElement.textContent = this.medium.license;
 
         if (this.medium.type === "image") {
             this.imageElement.srcset = `
