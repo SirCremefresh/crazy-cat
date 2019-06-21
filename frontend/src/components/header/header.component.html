@@ -2,6 +2,7 @@
     :host {
         display: block;
         height: 54px;
+        z-index: 999;
     }
 
     header {
@@ -27,7 +28,7 @@
         color: white;
         text-decoration: none;
         display: block;
-        margin: 15px 0px 15px 65px;
+        margin: 15px 0px 15px 40px;
     }
 
     .settings-icon {
@@ -50,16 +51,11 @@
 
     .links a, .settings {
         padding-left: 10px;
-        padding-top: 10px;
         font-size: 1.3em;
     }
 
     .links a:hover, .settings:hover {
         text-decoration: underline;
-    }
-
-    .settings {
-        padding-bottom: 10px;
     }
 
     @media (min-width: 600px) {
@@ -76,22 +72,20 @@
 
         nav a {
             display: inline-block;
-            margin: 15px;
+            margin: unset;
         }
 
         .links {
             flex-grow: 1;
             display: inline-block;
-            font-size: 1.8em;
+            font-size: 1.1em;
         }
 
         .links a:first-child {
-            border-left: 1px solid #505050;
             padding-left: 4px;
         }
 
         .links a {
-            border-right: 1px solid #505050;
             padding-right: 4px;
         }
 
@@ -103,7 +97,7 @@
             display: block;
             font-size: 45px;
             position: relative;
-            right: 8px;
+            /* right: 8px; */
             width: 48px;
             border-radius: 5px;
             background-color: #FFD166;
