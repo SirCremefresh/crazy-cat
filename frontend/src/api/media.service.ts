@@ -17,12 +17,13 @@ export interface Medium {
 class MediaService {
     private static readonly LIKES_LOCAL_STORAGE_KEY = "LIKES";
     private static readonly DISLIKES_LOCAL_STORAGE_KEY = "DISLIKES";
+    private static readonly BASE_URL = "https://europe-west1-crazy-cat-josodo.cloudfunctions.net/";
 
     private mediaCache: Medium[] = null;
 
     async fetchAll(): Promise<Medium[]> {
         if (this.mediaCache === null) {
-            this.mediaCache = await fetch("https://europe-west1-crazy-cat-josodo.cloudfunctions.net/media").then<Medium[]>(e => e.json());
+            this.mediaCache = await fetch(`${MediaService.BASE_URL}media`).then<Medium[]>(e => e.json());
             const likes = this.getArrayFromLocalStorage(MediaService.LIKES_LOCAL_STORAGE_KEY);
             const dislikes = this.getArrayFromLocalStorage(MediaService.DISLIKES_LOCAL_STORAGE_KEY);
             this.mediaCache = this.mediaCache.map(value => {
@@ -49,7 +50,7 @@ class MediaService {
         const likes = this.getArrayFromLocalStorage(MediaService.LIKES_LOCAL_STORAGE_KEY);
         likes.push(id);
         this.setArrayInLocalStorage(MediaService.LIKES_LOCAL_STORAGE_KEY, likes);
-        await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/like?id=${id}`)
+        await fetch(`${MediaService.BASE_URL}like?id=${id}`)
     }
 
     async unlike(id: string) {
@@ -58,7 +59,7 @@ class MediaService {
         let likes = this.getArrayFromLocalStorage(MediaService.LIKES_LOCAL_STORAGE_KEY);
         likes = likes.filter(value => value !== id);
         this.setArrayInLocalStorage(MediaService.LIKES_LOCAL_STORAGE_KEY, likes);
-        await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/unlike?id=${id}`)
+        await fetch(`${MediaService.BASE_URL}unlike?id=${id}`)
     }
 
     async dislike(id: string) {
@@ -67,7 +68,7 @@ class MediaService {
         const dislikes = this.getArrayFromLocalStorage(MediaService.DISLIKES_LOCAL_STORAGE_KEY);
         dislikes.push(id);
         this.setArrayInLocalStorage(MediaService.DISLIKES_LOCAL_STORAGE_KEY, dislikes);
-        await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/dislike?id=${id}`)
+        await fetch(`${MediaService.BASE_URL}dislike?id=${id}`)
     }
 
     async undislike(id: string) {
@@ -76,7 +77,7 @@ class MediaService {
         let dislikes = this.getArrayFromLocalStorage(MediaService.DISLIKES_LOCAL_STORAGE_KEY);
         dislikes = dislikes.filter(value => value !== id);
         this.setArrayInLocalStorage(MediaService.DISLIKES_LOCAL_STORAGE_KEY, dislikes);
-        await fetch(`https://europe-west1-crazy-cat-josodo.cloudfunctions.net/undislike?id=${id}`)
+        await fetch(`${MediaService.BASE_URL}undislike?id=${id}`)
     }
 
     setArrayInLocalStorage(key: string, value: unknown[]) {

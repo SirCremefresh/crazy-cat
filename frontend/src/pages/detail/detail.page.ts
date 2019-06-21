@@ -5,6 +5,7 @@ import {getVariable} from "../../router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 import {mediaService, Medium} from "../../api/media.service";
+import {styleService} from "../../api/style.service";
 
 export class DetailPage extends HTMLElement {
     medium: Medium;
@@ -14,6 +15,8 @@ export class DetailPage extends HTMLElement {
     descriptionElement: HTMLElement;
     imageElement: HTMLImageElement;
     videoElement: HTMLVideoElement;
+    ratingElement: HTMLElement;
+    backButton: SVGElement;
 
     constructor() {
         super();
@@ -31,6 +34,10 @@ export class DetailPage extends HTMLElement {
         this.videoElement = this.shadowRoot.querySelector("[data-js=video]");
 
         this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
+        this.ratingElement = this.shadowRoot.querySelector('[data-js=rating');
+        this.backButton = this.shadowRoot.querySelector('[data-js=back-button');
+
+        this.updateColors = this.updateColors.bind(this);
     }
 
     async connectedCallback() {
@@ -65,6 +72,9 @@ export class DetailPage extends HTMLElement {
 
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);
+
+        this.updateColors();
+        styleService.observable.subscribe(this.updateColors);
     }
 
     async onLikeButtonChange(event: CustomEvent) {
@@ -87,6 +97,11 @@ export class DetailPage extends HTMLElement {
         } else {
             await mediaService.undislike(this.medium.id);
         }
+    }
+
+    updateColors() {
+        this.ratingElement.style.backgroundColor = styleService.currentOption.secondaryBackgroundColor;
+        this.backButton.style.fill = styleService.currentOption.fontColor;
     }
 
     disconnectedCallback() {
