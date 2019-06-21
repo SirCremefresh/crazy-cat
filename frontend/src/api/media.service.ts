@@ -5,10 +5,11 @@ export interface Medium {
     fileUrls: {
         s: string, m: string, l: string, thumbnail: string
     }
-    license: string
-    likes: number
-    name: string
-    type: "video" | "image"
+    license: string;
+    likes: number;
+    dislikes: number;
+    name: string;
+    type: "video" | "image";
 }
 
 class MediaService {

@@ -88,6 +88,7 @@ exports.generateResponsiveContent = functions
             type,
             fileUrls,
             likes: 0,
+            dislikes: 0,
             license: '',
             description: ''
         });
