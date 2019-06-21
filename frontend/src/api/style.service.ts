@@ -8,7 +8,7 @@ class StyleService {
     private static readonly LOCAL_STORAGE_KEY = "CURRENT_THEME";
     private options: { [key in StyleKeys]: StyleOptions } = {
         Default: {
-            headerBackground: '#416AA6'
+            headerBackground: '#26547C'
         },
         Pride: {
             headerBackground: 'linear-gradient(\n' +
