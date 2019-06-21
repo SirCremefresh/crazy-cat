@@ -28,7 +28,6 @@ export class HomePage extends HTMLElement {
 
         this.imagesContainer.removeChild(this.imagesContainer.firstChild);
         this.imagesContainer.append(...imageComponents);
-        console.log(media);
     }
 
 }

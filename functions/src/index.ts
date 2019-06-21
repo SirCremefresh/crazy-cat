@@ -20,77 +20,81 @@ admin.initializeApp(functions.config().firebase);
 const firestore = admin.firestore();
 const bucket = admin.storage().bucket();
 
-exports.media = functions.https.onRequest(async (request: any, response: any) => {
-    response.set('Access-Control-Allow-Origin', '*');
+exports.media = functions
+    .region("europe-west1")
+    .https.onRequest(async (request: any, response: any) => {
+        response.set('Access-Control-Allow-Origin', '*');
 
-    if (request.method === 'OPTIONS') {
-        // Send response to OPTIONS requests
-        response.set('Access-Control-Allow-Methods', 'GET');
-        response.set('Access-Control-Allow-Headers', 'Content-Type');
-        response.set('Access-Control-Max-Age', '3600');
-        response.status(204).send('');
-        return;
-    }
-
-    const snapshot = await firestore.collection('media').where('active', '==', true).get();
-
-    const document = snapshot.docs.map((doc: any) => {
-        return {
-            id: doc.id,
-            ...doc.data()
+        if (request.method === 'OPTIONS') {
+            // Send response to OPTIONS requests
+            response.set('Access-Control-Allow-Methods', 'GET');
+            response.set('Access-Control-Allow-Headers', 'Content-Type');
+            response.set('Access-Control-Max-Age', '3600');
+            response.status(204).send('');
+            return;
         }
-    });
-    response.send(document);
-});
 
+        const snapshot = await firestore.collection('media').where('active', '==', true).get();
 
-exports.generateResponsiveContent = functions.runWith({
-    timeoutSeconds: 540,
-    memory: '1GB'
-}).storage.object().onFinalize(async (file: ObjectMetadata) => {
-    if (!file.name) {
-        console.error(`filePath is undefined. file: ${JSON.stringify(file)}`)
-    }
-    const filePath = <string>file.name;
-
-    if (filePath.includes('transformed')) {
-        return;
-    }
-
-    const tempFilePath = path.join(os.tmpdir(), filePath);
-    await bucket.file(filePath).download({destination: tempFilePath});
-
-    let fileUrls;
-    let type: string;
-
-    if (file.contentType === 'video/mp4') {
-        console.log("received video");
-        type = 'video';
-        fileUrls = await handleVideoConversion(tempFilePath);
-    } else if (file.contentType.startsWith("image")) {
-        console.log("received image");
-        type = 'image';
-        fileUrls = await handleImageConversion(tempFilePath);
-    } else {
-        console.info("unsupported contentType: ", file.contentType);
-        return;
-    }
-
-
-    console.log('saving media information to firestore');
-    firestore.collection('media').doc().set({
-        active: false,
-        name: filePath,
-        type,
-        fileUrls,
-        likes: 0,
-        license: '',
-        description: ''
+        const document = snapshot.docs.map((doc: any) => {
+            return {
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+        response.send(document);
     });
 
-    fs.unlinkSync(tempFilePath);
-    return;
-});
+
+exports.generateResponsiveContent = functions
+    .region("europe-west1")
+    .runWith({
+        timeoutSeconds: 540,
+        memory: '1GB',
+    }).storage.object().onFinalize(async (file: ObjectMetadata) => {
+        if (!file.name) {
+            console.error(`filePath is undefined. file: ${JSON.stringify(file)}`)
+        }
+        const filePath = <string>file.name;
+
+        if (filePath.includes('transformed')) {
+            return;
+        }
+
+        const tempFilePath = path.join(os.tmpdir(), filePath);
+        await bucket.file(filePath).download({destination: tempFilePath});
+
+        let fileUrls;
+        let type: string;
+
+        if (file.contentType === 'video/mp4') {
+            console.log("received video");
+            type = 'video';
+            fileUrls = await handleVideoConversion(tempFilePath);
+        } else if (file.contentType.startsWith("image")) {
+            console.log("received image");
+            type = 'image';
+            fileUrls = await handleImageConversion(tempFilePath);
+        } else {
+            console.info("unsupported contentType: ", file.contentType);
+            return;
+        }
+
+
+        console.log('saving media information to firestore');
+        firestore.collection('media').doc().set({
+            active: false,
+            name: filePath,
+            type,
+            fileUrls,
+            likes: 0,
+            license: '',
+            description: ''
+        });
+
+        fs.unlinkSync(tempFilePath);
+        return;
+    });
 
 
 async function handleVideoConversion(tempFilePath: string) {
