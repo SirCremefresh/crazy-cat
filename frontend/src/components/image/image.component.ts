@@ -41,6 +41,7 @@ export class ImageComponent extends HTMLElement {
         this.imageDescription.textContent = this.medium.description;
 
         this.likeButton.likes = this.medium.likes;
+        this.likeButton.liked = this.medium.liked;
 
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
     }

@@ -47,8 +47,8 @@ export class DetailPage extends HTMLElement {
             ${this.medium.fileUrls.l} 1200w
         `;
 
-        this.likeButton.liked = false;
-        this.dislikeButton.disliked = false;
+        this.likeButton.liked = this.medium.liked;
+        this.dislikeButton.disliked = this.medium.disliked;
 
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);
