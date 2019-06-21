@@ -13,6 +13,7 @@ export class DetailPage extends HTMLElement {
 
     descriptionElement: HTMLElement;
     imageElement: HTMLImageElement;
+    videoElement: HTMLVideoElement;
 
     constructor() {
         super();
@@ -27,6 +28,7 @@ export class DetailPage extends HTMLElement {
         this.dislikeButton = this.shadowRoot.querySelector("[data-js=dislike-button]");
 
         this.imageElement = this.shadowRoot.querySelector("[data-js=image]");
+        this.videoElement = this.shadowRoot.querySelector("[data-js=video]");
 
         this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
     }
@@ -40,15 +42,26 @@ export class DetailPage extends HTMLElement {
 
         this.likeButton.likes = this.medium.likes;
         this.dislikeButton.dislikes = this.medium.dislikes;
+        this.likeButton.liked = this.medium.liked;
+        this.dislikeButton.disliked = this.medium.disliked;
 
-        this.imageElement.srcset = `
+        if (this.medium.type === "image") {
+            this.imageElement.srcset = `
             ${this.medium.fileUrls.s} 560w,
             ${this.medium.fileUrls.m} 960w,
             ${this.medium.fileUrls.l} 1200w
-        `;
+            `;
+        } else {
+            this.videoElement.poster = this.medium.fileUrls.thumbnail;
+            this.videoElement.innerHTML = `
+               <source src="${this.medium.fileUrls.s}" type="video/mp4" media="all and (max-width: 560px)"> 
+               <source src="${this.medium.fileUrls.m}" type="video/mp4" media="all and (max-width: 960px)"> 
+               <source src="${this.medium.fileUrls.l}" type="video/mp4"> 
+            `;
+            this.videoElement.style.display = "block";
+            this.imageElement.style.display = "none";
+        }
 
-        this.likeButton.liked = this.medium.liked;
-        this.dislikeButton.disliked = this.medium.disliked;
 
         this.likeButton.addEventListener('change', this.onLikeButtonChange);
         this.dislikeButton.addEventListener('change', this.onDislikeButtonChange);

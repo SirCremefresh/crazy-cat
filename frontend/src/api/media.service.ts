@@ -39,7 +39,6 @@ class MediaService {
     async fetch(id: string): Promise<Medium> {
         if (this.mediaCache === null) {
             await this.fetchAll();
-            console.error("not implemented lazy loading");
         }
         return this.mediaCache.find((medium) => medium.id === id);
     }
