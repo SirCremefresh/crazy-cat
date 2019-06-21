@@ -4,6 +4,7 @@ import {ObjectMetadata} from "firebase-functions/lib/providers/storage";
 import * as path from "path";
 import * as os from "os";
 import * as fs from "fs";
+import FieldValue = admin.firestore.FieldValue;
 
 const spawn = require('child-process-promise').spawn;
 
@@ -13,26 +14,35 @@ const ffprobePath = require('ffprobe-static').path;
 const ffmpeg = require('fluent-ffmpeg');
 
 ffmpeg.setFfmpegPath(ffmpegPath);
-ffmpeg.setFfprobePath(ffprobePath);
 
+
+ffmpeg.setFfprobePath(ffprobePath);
 admin.initializeApp(functions.config().firebase);
 
 const firestore = admin.firestore();
+
 const bucket = admin.storage().bucket();
+
+function handleCors(request, response) {
+    response.set('Access-Control-Allow-Origin', '*');
+
+    if (request.method === 'OPTIONS') {
+        // Send response to OPTIONS requests
+        response.set('Access-Control-Allow-Methods', 'GET');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.set('Access-Control-Max-Age', '3600');
+        response.status(204).send('');
+        return true;
+    }
+    return false;
+}
+
 
 exports.media = functions
     .region("europe-west1")
-    .https.onRequest(async (request: any, response: any) => {
-        response.set('Access-Control-Allow-Origin', '*');
-
-        if (request.method === 'OPTIONS') {
-            // Send response to OPTIONS requests
-            response.set('Access-Control-Allow-Methods', 'GET');
-            response.set('Access-Control-Allow-Headers', 'Content-Type');
-            response.set('Access-Control-Max-Age', '3600');
-            response.status(204).send('');
+    .https.onRequest(async (request: functions.https.Request, response: functions.Response) => {
+        if (handleCors(request, response))
             return;
-        }
 
         const snapshot = await firestore.collection('media').where('active', '==', true).get();
 
@@ -43,6 +53,58 @@ exports.media = functions
             }
         });
         response.send(document);
+    });
+
+exports.like = functions
+    .region("europe-west1")
+    .https.onRequest(async (request: functions.https.Request, response: functions.Response) => {
+        if (handleCors(request, response))
+            return;
+
+        const id = request.query.id;
+        const ref = firestore.collection('media').doc(id);
+        await ref.update({likes: FieldValue.increment(1)});
+
+        response.send("ok");
+    });
+
+exports.unlike = functions
+    .region("europe-west1")
+    .https.onRequest(async (request: functions.https.Request, response: functions.Response) => {
+        if (handleCors(request, response))
+            return;
+
+        const id = request.query.id;
+        const ref = firestore.collection('media').doc(id);
+        await ref.update({likes: FieldValue.increment(-1)});
+
+        response.send("ok");
+    });
+
+exports.dislike = functions
+    .region("europe-west1")
+    .https.onRequest(async (request: functions.https.Request, response: functions.Response) => {
+        if (handleCors(request, response))
+            return;
+
+        const id = request.query.id;
+        const ref = firestore.collection('media').doc(id);
+        await ref.update({dislikes: FieldValue.increment(1)});
+
+        response.send("ok");
+    });
+
+exports.undislike = functions
+    .region("europe-west1")
+    .https.onRequest(async (request: functions.https.Request, response: functions.Response) => {
+        if (handleCors(request, response))
+            return;
+
+        const id = request.query.id;
+        const ref = firestore.collection('media').doc(id);
+        await ref.update({dislikes: FieldValue.increment(-1)});
+
+        response.send("ok");
     });
 
 
