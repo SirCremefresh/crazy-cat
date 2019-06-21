@@ -1,7 +1,7 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
-import {getVariable} from "../../router";
+import {getVariable, silentNavigateTo} from "../../router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 import {mediaService, Medium} from "../../api/media.service";
@@ -41,9 +41,16 @@ export class DetailPage extends HTMLElement {
     }
 
     async connectedCallback() {
-        const id = getVariable();
-        this.medium = await mediaService.fetch(id);
+        {
+            const id = getVariable();
 
+            if (id === "cat-of-the-month") {
+                this.medium = await mediaService.fetchCatOfTheMonth();
+                silentNavigateTo(this.medium.id);
+            } else {
+                this.medium = await mediaService.fetch(id);
+            }
+        }
 
         this.descriptionElement.textContent = this.medium.description;
 

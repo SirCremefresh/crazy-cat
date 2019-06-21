@@ -44,6 +44,13 @@ class MediaService {
         return this.mediaCache.find((medium) => medium.id === id);
     }
 
+    async fetchCatOfTheMonth(): Promise<Medium> {
+        if (this.mediaCache === null) {
+            await this.fetchAll();
+        }
+        return this.mediaCache.sort((a, b) => (b.likes - b.dislikes) - (a.likes - a.dislikes))[0];
+    }
+
     async like(id: string) {
         const medium = await this.fetch(id);
         medium.likes++;
