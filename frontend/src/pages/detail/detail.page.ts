@@ -12,6 +12,7 @@ export class DetailPage extends HTMLElement {
     dislikeButton: DislikeButtonComponent;
 
     descriptionElement: HTMLElement;
+    imageElement: HTMLImageElement;
 
     constructor() {
         super();
@@ -25,7 +26,9 @@ export class DetailPage extends HTMLElement {
         this.likeButton = this.shadowRoot.querySelector("[data-js=like-button]");
         this.dislikeButton = this.shadowRoot.querySelector("[data-js=dislike-button]");
 
-        this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]")
+        this.imageElement = this.shadowRoot.querySelector("[data-js=image]");
+
+        this.descriptionElement = this.shadowRoot.querySelector("[data-js=description]");
     }
 
     async connectedCallback() {
@@ -37,6 +40,12 @@ export class DetailPage extends HTMLElement {
 
         this.likeButton.likes = this.medium.likes;
         this.dislikeButton.dislikes = this.medium.dislikes;
+
+        this.imageElement.srcset = `
+            ${this.medium.fileUrls.s} 560w,
+            ${this.medium.fileUrls.m} 960w,
+            ${this.medium.fileUrls.l} 1200w
+        `;
 
         this.likeButton.liked = false;
         this.dislikeButton.disliked = false;
