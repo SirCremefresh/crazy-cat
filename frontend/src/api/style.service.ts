@@ -66,6 +66,10 @@ class StyleService {
         this.observable.emit(this.currentOption);
     }
 
+    getCurrentKey(): StyleKeys {
+        return this.currentKey;
+    }
+
     public observable = new Observable<StyleOptions>()
 }
 

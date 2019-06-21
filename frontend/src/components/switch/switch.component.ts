@@ -23,12 +23,20 @@ export class SwitchComponent extends HTMLElement {
     }
 
     onOuterButtonClick() {
+        this.setEnabled(!this.enabled);
+    }
+
+    setEnabled(value: boolean) {
+        this.enabled = value;
+        this.render();
+    }
+
+    render() {
         if (this.enabled) {
-            this.innerButton.classList.add("disabled");
-        } else {
             this.innerButton.classList.remove("disabled");
+        } else {
+            this.innerButton.classList.add("disabled");
         }
-        this.enabled = !this.enabled;
     }
 
     public disconnectedCallback() {

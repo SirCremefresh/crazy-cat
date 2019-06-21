@@ -1,7 +1,7 @@
 import template from './settings.page.html';
 import '../../components/switch/switch.component';
 import {styleService} from "../../api/style.service";
-import { SwitchComponent } from '../../components/switch/switch.component';
+import {SwitchComponent} from '../../components/switch/switch.component';
 
 export class HomePage extends HTMLElement {
 
@@ -23,35 +23,38 @@ export class HomePage extends HTMLElement {
         this.toggleDarkMode = this.toggleDarkMode.bind(this);
 
         this.links = this.shadowRoot.querySelectorAll('a');
-        this.updateColors = this.updateColors.bind(this);
+        this.onStyleChange = this.onStyleChange.bind(this);
     }
 
     connectedCallback() {
         this.prideSwitch.addEventListener('click', this.togglePrideMode);
         this.darkSwitch.addEventListener('click', this.toggleDarkMode);
 
-        this.updateColors();
-        styleService.observable.subscribe(this.updateColors);
+        this.onStyleChange();
+        styleService.observable.subscribe(this.onStyleChange);
     }
 
     togglePrideMode() {
-        if(this.prideSwitch.enabled){
+        if (this.prideSwitch.enabled) {
             styleService.setCurrentKey("Pride");
         } else {
             styleService.setCurrentKey("Default");
         }
     }
 
-    toggleDarkMode(){
-        if(this.darkSwitch.enabled){
+    toggleDarkMode() {
+        if (this.darkSwitch.enabled) {
             styleService.setCurrentKey("Dark");
         } else {
             styleService.setCurrentKey("Default");
-        }  
+        }
     }
 
-    updateColors() {
-        this.links.forEach((e)=> {
+    onStyleChange() {
+        this.prideSwitch.setEnabled(styleService.getCurrentKey() === "Pride");
+        this.darkSwitch.setEnabled(styleService.getCurrentKey() === "Dark");
+
+        this.links.forEach((e) => {
             e.style.color = styleService.currentOption.linkFontColor;
         })
     }
