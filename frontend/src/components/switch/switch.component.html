@@ -7,13 +7,26 @@
         box-sizing: border-box;
     }
 
+    .button {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        border: none;
+        display: flex;
+        align-items: center;
+        height: 24px;
+    }
+
     .outer {
-        background: lightgray;
-        width: 70px;
-        height: 30px;
+        background: #b1cee7;
+        width: 30px;
+        height: 15px;
         border-radius: 45px;
         border: none;
-        padding: 0;
+        margin-left: 12px;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
     }
 
     .inner {
@@ -22,18 +35,25 @@
         width: 24px;
         height: 24px;
         border-radius: 100%;
-        transform: translateX(40px);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
+
+        transform: translateX(18px);
         transition: transform 0.5s ease, background 0.5s ease;
-        margin-left: 3px;
+    }
+
+    .disabled > div {
+        transform: translateX(-12px) !important;
+        background: darkgray;
     }
 
     .disabled {
-        transform: translateX(0) !important;
-        background: darkgray;
+        background: lightgray;
     }
 </style>
 
-<button class="outer" data-js="outer">
-    <span class="inner disabled" data-js="inner"></span>
+<button class="button" data-js="outer">
+    <div class="outer disabled" data-js="inner">
+        <div class="inner"></div>
+    </div>
 </button>
 
