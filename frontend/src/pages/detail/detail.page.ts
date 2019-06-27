@@ -1,7 +1,7 @@
 import template from './detail.page.html';
 import '../../components/like-button/like-button.component'
 import '../../components/dislike-button/dislike-button.component'
-import {getVariable, navigateTo, silentNavigateTo} from "../../router";
+import {getVariable, navigateTo, silentNavigateTo} from "../../navigation/router";
 import {LikeButtonComponent} from "../../components/like-button/like-button.component";
 import {DislikeButtonComponent} from "../../components/dislike-button/dislike-button.component";
 import {mediaService, Medium} from "../../api/media.service";

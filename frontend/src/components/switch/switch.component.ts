@@ -3,8 +3,8 @@ import template from './switch.component.html';
 export class SwitchComponent extends HTMLElement {
 
     enabled: boolean = false;
-    outerButton: HTMLButtonElement;
-    innerButton: HTMLElement;
+
+    switchButton: HTMLButtonElement;
 
     constructor() {
         super();
@@ -12,17 +12,20 @@ export class SwitchComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
 
-        this.onOuterButtonClick = this.onOuterButtonClick.bind(this);
+        this.onSwitchButtonClick = this.onSwitchButtonClick.bind(this);
 
-        this.outerButton = this.shadowRoot.querySelector("[data-js=outer]");
-        this.innerButton = this.shadowRoot.querySelector("[data-js=inner]");
+        this.switchButton = this.shadowRoot.querySelector("[data-js=switchButton]");
     }
 
     connectedCallback() {
-        this.outerButton.addEventListener('click', this.onOuterButtonClick);
+        this.switchButton.addEventListener('click', this.onSwitchButtonClick);
     }
 
-    onOuterButtonClick() {
+    disconnectedCallback() {
+        this.switchButton.removeEventListener('click', this.onSwitchButtonClick);
+    }
+
+    onSwitchButtonClick() {
         this.setEnabled(!this.enabled);
     }
 
@@ -33,14 +36,10 @@ export class SwitchComponent extends HTMLElement {
 
     render() {
         if (this.enabled) {
-            this.innerButton.classList.remove("disabled");
+            this.switchButton.classList.remove("disabled");
         } else {
-            this.innerButton.classList.add("disabled");
+            this.switchButton.classList.add("disabled");
         }
-    }
-
-    public disconnectedCallback() {
-        this.outerButton.removeEventListener('click', this.onOuterButtonClick);
     }
 }
 

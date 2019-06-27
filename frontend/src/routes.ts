@@ -1,9 +1,9 @@
 import './initial-components';
-import {initRouter} from './router';
+import {initRouter} from './navigation/router';
 
 initRouter({
     notFoundRoute: {
-        path: '/not-found',
+        path: '404',
         component: 'app-not-found-page',
         page: import('./pages/not-found/not-found.page'),
     },

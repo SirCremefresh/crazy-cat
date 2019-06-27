@@ -1,9 +1,4 @@
-interface Route {
-    component: string,
-    path: string,
-    hasVariable?: boolean,
-    page: any
-}
+import {Route} from './route.model';
 
 const mountPoint: HTMLElement = document.getElementById('app');
 

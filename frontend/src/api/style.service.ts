@@ -9,39 +9,25 @@ class StyleService {
     private static readonly LOCAL_STORAGE_KEY = "CURRENT_THEME";
     private options: { [key in StyleKeys]: StyleOptions } = {
         Default: {
-            headerBackground: '#26547C',
+            headerBackground: 'var(--primary-color)',
             siteBackground: '#FFF',
             fontColor: '#000',
             linkFontColor: '',
             secondaryBackgroundColor: ''
         },
         Dark: {
-            headerBackground: '#26547C',
+            headerBackground: 'var(--primary-color)',
             siteBackground: '#2E2E2E',
             fontColor: '#FFF',
             linkFontColor: '#06D6A0',
             secondaryBackgroundColor: '#FFF'
-            // secondaryBackgroundColor: '#FFD166'
         },
         Pride: {
-            headerBackground: 'linear-gradient(\n' +
-                '    #d04b36 0%,\n' +
-                '    #d04b36 16.6666%,\n' +
-                '    #e36511 16.6666%,\n' +
-                '    #e36511 33.333%,\n' +
-                '    #ffba00 33.333%,\n' +
-                '    #ffba00 50%,\n' +
-                '    #00b180 50%,\n' +
-                '    #00b180 66.6666%,\n' +
-                '    #147aab 66.6666%,\n' +
-                '    #147aab 83.3333%,\n' +
-                '    #675997 83.3333%,\n' +
-                '    #675997 100%\n' +
-                '  )',
-                siteBackground: '#FFF',
-                fontColor: '#000',
-                linkFontColor: '',
-                secondaryBackgroundColor: ''
+            headerBackground: 'var(--pride-color-gradient)',
+            siteBackground: '#FFF',
+            fontColor: '#000',
+            linkFontColor: '',
+            secondaryBackgroundColor: ''
         }
     };
 

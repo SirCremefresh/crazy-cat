@@ -1,4 +1,4 @@
-import {navigateTo} from '../../router';
+import {navigateTo} from '../../navigation/router';
 
 export class LinkComponent extends HTMLAnchorElement {
     connectedCallback() {
